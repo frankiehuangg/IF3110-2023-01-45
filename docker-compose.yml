@@ -16,8 +16,12 @@ services:
       tubes-adminer:
         condition: service_started
     volumes:
+      # - .:/var/www/html/
       - ./public:/var/www/html/public
       - ./src:/var/www/html/src
+      - ./index.php:/var/www/html/index.php
+      - ./routes.php:/var/www/html/routes.php
+      - ./php.ini:/usr/local/etc/php/conf.d/php.ini
 
   tubes-db:
     container_name: tubes-db
