@@ -1,6 +1,6 @@
 <?php
 
-require_once PROJECT_ROOT_PATH . "./src/bases/PostModel.php";
+require_once PROJECT_ROOT_PATH . "/src/bases/BaseModel.php";
 
 class PostModel extends BaseModel {
     private $post_id;
@@ -46,4 +46,4 @@ class PostModel extends BaseModel {
     public function like()             { $this->like_count++; }
     public function unlike()           { $this->like_count--; }
 }
->
+?>
