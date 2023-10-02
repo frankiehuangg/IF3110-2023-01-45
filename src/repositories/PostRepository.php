@@ -5,7 +5,7 @@ require_once PROJECT_ROOT_PATH . '/src/models/PostModel.php';
 
 class PostRepository extends BaseRepository {
     protected static $instance;
-    protected $tableName = 'post';
+    protected $tableName = 'posts';
 
     private function __construct() {
         parent::__construct();
