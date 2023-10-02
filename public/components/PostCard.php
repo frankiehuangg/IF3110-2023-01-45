@@ -3,17 +3,31 @@
 require_once PROJECT_ROOT_PATH . '/src/models/PostModel.php';
 
 function PostCard($post) {
-    $postID = $post->getPostID();
-    $postText = $post->getPostText();
-    $likeCount = $post->getLikeCount();
-    $postTime = $post->getPostTime();
+    $userProfilePicture = '/public/image/default.png';
+    $userDisplayName = '@' . 'amongusofficial';
+    $username = 'amongos';
+    $postID        = $post->getPostID();
+    $postContent   = $post->getPostContent();
+    $postTimestamp = $post->getPostTimestamp();
+    $postLikes     = $post->getLikes();
+    $postReplies   = $post->getReplies();
+    $postShares    = $post->getShares();
+    # $postResources = $post->getResources();
+    $postResources = '/public/image/haha.png';
 
     $html = <<<"EOT"
     <a href="/post/$postID" class="post-card position-relative">
-        $postID<br>
-        $postText<br>
-        $likeCount<br>
-        $postTime<br>
+        <div>
+            $userProfilePicture <br>
+            $userDisplayName    <br>
+            $username           <br>
+            $postTimestamp      <br>
+            $postContent        <br>
+            $postResources      <br>
+            $postReplies        <br>
+            $postShares         <br>
+            $postLikes          <br>
+        </div>
     </a>
     EOT;
 
