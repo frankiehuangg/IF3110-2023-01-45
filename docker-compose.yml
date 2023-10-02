@@ -16,11 +16,13 @@ services:
       tubes-adminer:
         condition: service_started
     volumes:
-      # - .:/var/www/html/
       - ./public:/var/www/html/public
       - ./src:/var/www/html/src
       - ./index.php:/var/www/html/index.php
       - ./routes.php:/var/www/html/routes.php
+      - ./phpinfo.php:/var/www/html/phpinfo.php
+      - ./.env:/var/www/html/.env
+      - ./php.ini:/usr/local/etc/php/php.ini
       - ./php.ini:/usr/local/etc/php/conf.d/php.ini
 
   tubes-db:
@@ -30,17 +32,21 @@ services:
     networks:
       - tubes
     ports:
-      - 5433:5432
+      - 5432:5432
     restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_DATA: ${POSTGRES_DATA}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
       retries: 5
-    env_file: 
-      - .env
     volumes:
       - ./migrations/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db:/var/lib/postgresql/data/
 
   tubes-adminer:
     container_name: tubes-adminer
