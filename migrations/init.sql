@@ -1,12 +1,12 @@
-DROP TABLE IF EXIST likes;
-DROP TABLE IF EXIST post_reports;
-DROP TABLE IF EXIST posting;
-DROP TABLE IF EXIST post;
-DROP TABLE IF EXIST resource;
-DROP TABLE IF EXIST user_reports;
-DROP TABLE IF EXIST admin;
-DROP TABLE IF EXIST users;
-DROP TABLE IF EXIST pengguna;
+DROP TABLE IF EXISTS likes;
+DROP TABLE IF EXISTS post_reports;
+DROP TABLE IF EXISTS posting;
+DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS resource;
+DROP TABLE IF EXISTS user_reports;
+DROP TABLE IF EXISTS admin;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS pengguna;
 
 CREATE TABLE pengguna (
     username VARCHAR(45) PRIMARY KEY,
@@ -40,34 +40,38 @@ CREATE TABLE resource (
     resource_path VARCHAR(256) NOT NULL
 );
 
-CREATE TABLE post (
+CREATE TABLE posts (
     post_id SERIAL PRIMARY KEY,
-    post_text TEXT NOT NULL,
-    like_count INTEGER DEFAULT 0,
-    post_time TIMESTAMP NOT NULL,
+    post_content VARCHAR(200) NOT NULL,
+    post_timestamp TIMESTAMP NOT NULL,
+    likes INTEGER DEFAULT 0,
+    replies INTEGER DEFAULT 0,
+    shares INTEGER DEFAULT 0,
     resource_id INTEGER REFERENCES resource(resource_id)
 );
 
+INSERT INTO posts VALUES
+    (1, 'New post!', NOW(), 1, 1, 1, NULL);
+
 CREATE TABLE posting (
     username VARCHAR(45) REFERENCES users(username),
-    post_id INTEGER REFERENCES post(post_id),
+    post_id INTEGER REFERENCES posts(post_id),
     PRIMARY KEY (username, post_id)
 );
 
 CREATE TABLE post_reports (
-    post_id INTEGER PRIMARY KEY REFERENCES post(post_id),
+    post_id INTEGER PRIMARY KEY REFERENCES posts(post_id),
     description TEXT NOT NULL
 );
 
 CREATE TABLE likes (
     username VARCHAR(45) REFERENCES users(username),
-    post_id INTEGER REFERENCES post(post_id),
+    post_id INTEGER REFERENCES posts(post_id),
     PRIMARY KEY (username, post_id)
 );
 
-CREATE TABLE test (
-    id SERIAL PRIMARY KEY,
-    string VARCHAR(45) NOT NULL
+CREATE TABLE replies(
+    post_parent_id INTEGER REFERENCES posts(post_id),
+    post_child_id INTEGER REFERENCES posts(post_id),
+    PRIMARY KEY (post_parent_id, post_child_id)
 );
-
-INSERT INTO test VALUES(1, "HAHAHA");
