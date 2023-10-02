@@ -24,12 +24,12 @@ abstract class BaseRepository {
     }
 
     public function getAll() {
-        $sql = 'SELECT * FROM $this->tableName';
+        $sql = 'SELECT * FROM ' . $this->tableName;
         return $this->pdo->query($qsl);
     }
 
     public function countRow($where = []) {
-        $sql = 'SELECT COUNT(*) FROM $this->tableName';
+        $sql = 'SELECT COUNT(*) FROM ' . $this->tableName;
 
         $WHERE_CASE_EXIST = (count($where) > 0);
         if ($WHERE_CASE_EXIST) {
@@ -71,7 +71,7 @@ abstract class BaseRepository {
         $pageNo   = null,
         $pageSize = null
     ) {
-        $sql = 'SELECT * FROM $this->tableName';
+        $sql = 'SELECT * FROM ' . $this->tableName;
 
         $WHERE_CASE_EXIST = (count($where) > 0);
         if ($WHERE_CASE_EXIST) {
@@ -119,7 +119,7 @@ abstract class BaseRepository {
     }
 
     public function findOne($params) {
-        $sql = 'SELECT * FROM $this->tableName WHERE $key = :$key';
+        $sql = 'SELECT * FROM ' . $this->tableName . ' WHERE $key = :$key';
 
         for ($i = 0; $i < count($params) - 1; $i++) {
             $sql = $sql . ' AND $key = :$key';
@@ -138,7 +138,7 @@ abstract class BaseRepository {
     }
 
     public function insert($model, $params) {
-        $sql = 'INSERT INTO $this->tableName (';
+        $sql = 'INSERT INTO ' . $this->tableName . ' (';
 
         $sql = $sql . '$key';
         for ($i = 0; $i < count($params) - 1; $i++) {
@@ -165,7 +165,7 @@ abstract class BaseRepository {
     }
 
     public function update($model, $params) {
-        $sql = 'UPDATE $this->tableName SET $key = :$key';
+        $sql = 'UPDATE ' . $this->tableName . ' SET $key = :$key';
 
         for ($i = 0; $i < count($params) - 1; $i++) {
             $sql = $sql . ', $key = :$key';
@@ -191,7 +191,7 @@ abstract class BaseRepository {
     public function delete($model) {
         $primaryKey = $model->get('_primary_key');
 
-        $sql = 'DELETE FROM $this->tableName WHERE $primaryKey = :primaryKey';
+        $sql = 'DELETE FROM ' . $this->tableName . ' WHERE $primaryKey = :primaryKey';
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':primaryKey', $model->get(htmlspecialchars($primaryKey)), PDO::PARAM_INT);
@@ -201,7 +201,7 @@ abstract class BaseRepository {
     }
 
     public function getNLastRow($n) {
-        $sql = 'SELECT COUNT(*) FROM $this->tableName';
+        $sql = 'SELECT COUNT(*) FROM ' . $this->tableName;
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
