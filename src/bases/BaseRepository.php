@@ -201,7 +201,7 @@ abstract class BaseRepository {
     }
 
     public function getNLastRow($n) {
-        $sql = 'SELECT COUNT(*) FROM ' . $this->tableName;
+        $sql = 'SELECT COUNT(*) FROM $this->tableName';
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
@@ -221,7 +221,9 @@ abstract class BaseRepository {
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
 
-        return $stmt->fetchAll();
+        $params = $stmt->fetchAll();
+
+        return $params;
     }
 }
 
