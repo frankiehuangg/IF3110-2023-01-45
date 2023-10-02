@@ -1,7 +1,7 @@
 <?php
 
 abstract class BaseModel {
-    public $_primarykey = "";
+    public $_primary_key = "";
 
     public function __construct() {
         return $this;
@@ -16,7 +16,9 @@ abstract class BaseModel {
         return $this->$attr;
     }
 
+    public function getPrimaryKey() { return $this->_primarykey; }
+
     abstract public function constructFromArray($array);
 }
 
->
+?>
