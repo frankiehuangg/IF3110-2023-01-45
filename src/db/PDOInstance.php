@@ -12,7 +12,7 @@ class PDOInstance {
         $DB_NAME     = $_ENV['POSTGRES_DB'];
 
         try {
-            $URI = 'pgsql:host=' . $DB_HOST . ';port=' . $DB_PORT . ';dbname=' . $DB_NAME;
+            $URI = "pgsql:host=$DB_HOST;port=$DB_PORT;dbname=$DB_NAME";
             $this->pdo = new PDO($URI, $DB_USERNAME, $DB_PASSWORD);
         } catch (PDOException $e) {
             die('Error: Could not connect to ' . $e . '.');
