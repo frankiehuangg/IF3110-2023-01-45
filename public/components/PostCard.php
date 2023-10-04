@@ -6,13 +6,12 @@ function PostCard($post) {
     $userProfilePicture = '/public/image/default.png';
     $userDisplayName = '@' . 'amongusofficial';
     $username = 'amongos';
-    $postID        = $post->getPostID();
-    $postContent   = $post->getPostContent();
-    $postTimestamp = $post->getPostTimestamp();
-    $postLikes     = $post->getLikes();
-    $postReplies   = $post->getReplies();
-    $postShares    = $post->getShares();
-    # $postResources = $post->getResources();
+    $postID        = $post->get('post_id');
+    $postContent   = $post->get('post_content');
+    $postTimestamp = $post->get('post_timestamp');
+    $postLikes     = $post->get('likes');
+    $postReplies   = $post->get('replies');
+    $postShares    = $post->get('shares');
     $postResources = '/public/image/haha.png';
 
     $html = <<<"EOT"
@@ -29,6 +28,7 @@ function PostCard($post) {
             $postLikes          <br>
         </div>
     </a>
+    <br>
     EOT;
 
     return $html;
