@@ -21,7 +21,10 @@ INSERT INTO pengguna VALUES
 
 CREATE TABLE users (
     username VARCHAR(45) PRIMARY KEY REFERENCES pengguna(username),
-    description TEXT,
+    description VARCHAR(280),
+    follower_count INTEGER DEFAULT 0,
+    following_count INTEGER DEFAULT 0,
+    join_date TIMESTAMP DEFAULT NOW(),
     birthday DATE NOT NULL,
     profile_picture_path VARCHAR(256)
 );
@@ -35,23 +38,25 @@ CREATE TABLE user_reports (
     description TEXT NOT NULL
 );
 
-CREATE TABLE resource (
-    resource_id SERIAL PRIMARY KEY,
-    resource_path VARCHAR(256) NOT NULL
-);
-
 CREATE TABLE posts (
     post_id SERIAL PRIMARY KEY,
-    post_content VARCHAR(200) NOT NULL,
-    post_timestamp TIMESTAMP NOT NULL,
+    post_content VARCHAR(280) NOT NULL,
+    post_timestamp TIMESTAMP DEFAULT NOW(),
     likes INTEGER DEFAULT 0,
     replies INTEGER DEFAULT 0,
-    shares INTEGER DEFAULT 0,
-    resource_id INTEGER REFERENCES resource(resource_id)
+    shares INTEGER DEFAULT 0
 );
 
 INSERT INTO posts VALUES
-    (1, 'New post!', NOW(), 1, 1, 1, NULL);
+    (1, 'New post!', NOW(), 1, 1, 1),
+    (2, 'post of the week!', NOW(), 0, 1, 1);
+
+CREATE TABLE resources (
+    post_id INTEGER REFERENCES posts(post_id),
+    resource_id SERIAL,
+    resource_path VARCHAR(256) NOT NULL,
+    PRIMARY KEY (post_id, resource_id)
+);
 
 CREATE TABLE posting (
     username VARCHAR(45) REFERENCES users(username),
@@ -70,8 +75,14 @@ CREATE TABLE likes (
     PRIMARY KEY (username, post_id)
 );
 
-CREATE TABLE replies(
+CREATE TABLE replies (
     post_parent_id INTEGER REFERENCES posts(post_id),
     post_child_id INTEGER REFERENCES posts(post_id),
     PRIMARY KEY (post_parent_id, post_child_id)
+);
+
+CREATE TABLE follows (
+    following_user VARCHAR(45) REFERENCES users(username),
+    followed_user VARCHAR(45) REFERENCES users(username),
+    PRIMARY KEY (following_user, followed_user)
 );
