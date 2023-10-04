@@ -7,7 +7,7 @@ $postService = PostService::getInstance();
 $posts = $postService->getNLastPosts(10);
 
 usort($posts, function($a, $b) {
-    return $a->getPostTimestamp() > $b->getPostTimestamp();
+    return $a->get('post_timestamp') <=> $b->get('post_timestamp');
 });
 
 $postElmts = implode('', array_map(function($post) {
