@@ -2,10 +2,10 @@
 
 abstract class BaseController {
     protected static $instance;
-    protected $srv;
+    protected $service;
 
-    protected function __construct($srv) {
-        $this->srv = $srv;
+    protected function __construct($service) {
+        $this->service = $service;
     }
 
     public static function getInstance() {
@@ -16,17 +16,26 @@ abstract class BaseController {
         return self::$instance;
     }
 
-    protected function get($urlParams) {
+    protected function get($url_params) {
+        throw new MethodNotAllowedException('Method not allowed');
     }
 
-    protected function post($urlParams) {
+    protected function post($url_params) {
+        throw new MethodNotAllowedException('Method not allowed');
     }
 
-    protected function put($urlParams) {
+    protected function put($url_params) {
+        throw new MethodNotAllowedException('Method not allowed');
     }
 
-    protected function delete($urlParams) {
+    protected function delete($url_params) {
+        throw new MethodNotAllowedException('Method not allowed');
+    }
+
+    public function handle($method, $url_params) {
+        $string_lower = strtolower($method);
+        echo $this->$string_lower($url_params);
     }
 }
 
->
+?>
