@@ -1,7 +1,6 @@
 <?php
 
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseRepository.php';
-require_once PROJECT_ROOT_PATH . '/src/models/PostModel.php';
 
 class PostRepository extends BaseRepository {
     protected static $instance;
