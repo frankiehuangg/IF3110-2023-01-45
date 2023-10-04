@@ -8,19 +8,15 @@ class PageRouter {
         $this->routes = $routes;
     }
 
-    public function setErrorRoute($errorRoute) {
-        $this->errorRoute = $errorRoute;
-    }
-
     public function routing($path, $method) {
         $path = explode('?', $path)[0];
 
-        foreach ($this->routes as $key => $value) {
+        foreach ($this->routes as $key => $val) {
             $match = $this->isMatch($path, $key);
-            $GLOBALS['__urlParams'] = $match[1];
+            $_GLOBALS['__urlParams'] = $match[1];
             
             if ($match[0]) {
-                require $value;
+                require $val;
                 exit();
             }
         }
@@ -31,27 +27,33 @@ class PageRouter {
             header("HTTP/1.0 404 Not Found");
         }
     }
+    
+    public function setErrorRoute($errorRoute) {
+        $this->errorRoute = $errorRoute;
+    }
 
-    public function isMatch($path, $keyHandler) {
+    public function isMatch($path, $key_handler) {
         $path = explode('/', $path);
-        $keyHandler = explode('/', $keyHandler);
+        $key_handler = explode('/', $key_handler);
 
-        if (count($path) !== count($keyHandler)) {
+        if (count($path) !== count($key_handler)) {
             return [false, []];
         }
 
-        $urlParams = [];
+        $url_params = [];
 
         for ($i = 0; $i < count($path); $i++) {
-            if ($path[$i] !== $keyHandler[$i] && $keyHandler[$i] !== '*') {
+            if ($path[$i] !== $key_handler[$i] && $key_handler[$i] !== '*') {
                 return [false, []];
             }
             
-            if ($keyHandler[$i] === '*') {
-                $urlParams[] = $path[$i];
+            if ($key_handler[$i] === '*') {
+                $url_params[] = $path[$i];
             }
         }
 
-        return [true, $urlParams];
+        return [true, $url_params];
     }
 }
+
+?>
