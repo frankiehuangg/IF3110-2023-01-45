@@ -9,21 +9,15 @@ services:
     networks:
       - tubes
     ports:
-      - 8008:80
+      - 8008:80     # frontend
     depends_on:
       tubes-db:
         condition: service_healthy
       tubes-adminer:
         condition: service_started
     volumes:
-      - ./public:/var/www/html/public
-      - ./src:/var/www/html/src
-      - ./index.php:/var/www/html/index.php
-      - ./routes.php:/var/www/html/routes.php
-      - ./phpinfo.php:/var/www/html/phpinfo.php
-      - ./.env:/var/www/html/.env
+      - .:/var/www/html/
       - ./php.ini:/usr/local/etc/php/php.ini
-      - ./php.ini:/usr/local/etc/php/conf.d/php.ini
 
   tubes-db:
     container_name: tubes-db
