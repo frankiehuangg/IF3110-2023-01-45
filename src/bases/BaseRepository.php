@@ -25,7 +25,7 @@ abstract class BaseRepository {
 
     public function getAll() {
         $sql = 'SELECT * FROM ' . $this->tableName;
-        return $this->pdo->query($qsl);
+        return $this->pdo->query($sql);
     }
 
     public function countRow($where = []) {
@@ -79,10 +79,10 @@ abstract class BaseRepository {
             $sql = $sql . implode(' AND ', array_map(function($key, $val) {
                 $LIKE_CASE_EXIST = ($val[0] === 1);
                 if ($LIKE_CASE_EXIST) {
-                    return '$key LIKE :$key';
+                    return $key . ' LIKE :' . $key;
                 }
 
-                return '$key = :$key';
+                return $key . ' = :' . $key;
             }, array_keys($where), array_values($where)));
         }
 
@@ -108,9 +108,10 @@ abstract class BaseRepository {
 
             $LIKE_CASE_EXIST = ($val[0] === 1);
             if ($LIKE_CASE_EXIST) {
-                $stmt->bindValue(':$key', '%$VALUE%', $TYPE);
+                $VALUE = '%' . $VALUE . '%';
+                $stmt->bindValue(':' . $key, $VALUE, $TYPE);
             } else {
-                $stmt->bindValue(':$key', $VALUE, $TYPE);
+                $stmt->bindValue(':' . $key, $VALUE, $TYPE);
             }
         }
 
@@ -119,10 +120,17 @@ abstract class BaseRepository {
     }
 
     public function findOne($params) {
-        $sql = 'SELECT * FROM ' . $this->tableName . ' WHERE $key = :$key';
+        $sql = "SELECT * FROM $this->tableName WHERE";
 
-        for ($i = 0; $i < count($params) - 1; $i++) {
-            $sql = $sql . ' AND $key = :$key';
+        $i = 0;
+        foreach ($params as $key => $val) {
+            $sql = $sql . " $key = :$key";
+
+            if ($i < count($params) - 1) {
+                $sql = $sql . " AND";
+            }
+
+            $i++;
         }
 
         $stmt = $this->pdo->prepare($sql);
@@ -130,7 +138,7 @@ abstract class BaseRepository {
             $VALUE = htmlspecialchars($val[0]);
             $TYPE  = htmlspecialchars($val[1]);
 
-            $stmt->bindValue(':$key', $VALUE, $TYPE);
+            $stmt->bindValue(":$key", $VALUE, $TYPE);
         }
 
         $stmt->execute();
@@ -138,16 +146,29 @@ abstract class BaseRepository {
     }
 
     public function insert($model, $params) {
-        $sql = 'INSERT INTO ' . $this->tableName . ' (';
+        $sql = "INSERT INTO $this->tableName (";
 
-        $sql = $sql . '$key';
-        for ($i = 0; $i < count($params) - 1; $i++) {
-            $sql = $sql . ', $key';
+        $i = 0;
+        foreach ($params as $key => $val) {
+            $sql = $sql . "$key";
+
+            if ($i < count($params) - 1) {
+                $sql = $sql . ", ";
+            }
+
+            $i++;
         }
 
-        $sql = $sql . ') VALUES (:$key';
-        for ($i = 0; $i < count($params) - 1; $i++) {
-            $sql = $sql . ', :$key';
+        $sql = $sql . ') VALUES (';
+        $i = 0;
+        foreach ($params as $key => $val) {
+            $sql = $sql . ":$key";
+
+            if ($i < count($params) - 1) {
+                $sql = $sql . ", ";
+            }
+
+            $i++;
         }
 
         $sql = $sql . ')';
@@ -157,7 +178,7 @@ abstract class BaseRepository {
             $VALUE = $model->get(htmlspecialchars($key));
             $TYPE  = htmlspecialchars($val);
 
-            $stmt->bindValue(':$key', $VALUE, $TYPE);
+            $stmt->bindValue(":$key", $VALUE, $TYPE);
         }
 
         $stmt->execute();
