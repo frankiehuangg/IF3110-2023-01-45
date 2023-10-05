@@ -7,7 +7,8 @@ DROP TABLE IF EXISTS user_reports;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
-    username VARCHAR(45) PRIMARY KEY,
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(45) UNIQUE NOT NULL,
     password VARCHAR(256) NOT NULL,
     email VARCHAR(45) UNIQUE NOT NULL,
     description VARCHAR(280),
