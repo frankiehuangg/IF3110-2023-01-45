@@ -28,7 +28,7 @@ class UserModel extends BaseModel {
         $this->join_date                = $array['join_date'];
         $this->birthday                 = $array['birthday'];
         $this->profile_picture_path     = $array['profile_picture_path'];
-        $this->isAdmin                  = $array['isAdmin'];
+        $this->isAdmin                  = $array['is_admin'];
 
         return $this;
     }
@@ -42,7 +42,7 @@ class UserModel extends BaseModel {
     public function getJoinDate()           { return $this->join_date; }
     public function getBirthday()           { return $this->birthday; }
     public function getProfilePicturePath() { return $this->profile_picture_path; }
-    public function getIsAdmin()            { return $this->isAdmin; }
+    public function isAdmin()               { return $this->isAdmin; }
 }
 
 ?>
