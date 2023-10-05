@@ -1,21 +1,3 @@
-<?php
-
-require_once PROJECT_ROOT_PATH . '/src/services/PostService.php';
-require_once PROJECT_ROOT_PATH . '/public/components/PostCard.php';
-
-$postService = PostService::getInstance();
-$posts = $postService->getNLastPosts(10);
-
-usort($posts, function($a, $b) {
-    return $a->get('post_timestamp') <=> $b->get('post_timestamp');
-});
-
-$postElmts = implode('', array_map(function($post) {
-    return PostCard($post);
-}, $posts));
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -28,13 +10,13 @@ $postElmts = implode('', array_map(function($post) {
         <div class="page d-flex">
             <div id="main">
                 <div id="content">
-                    <div class="post-list d-flex flex-wrap">
-                        <?
-                        echo $postElmts;
-                        ?>
+                    <div class="post-list d-flex flex-wrap" id="post-list">
                     </div>
                 </div>
             </div>
         </div>
+
+        <script defer async src="/public/js/lib.js"></script>
+        <script defer async src="/public/js/home.js"></script>
     </body>
 </html>
