@@ -26,7 +26,15 @@ function PostCard($post) {
             $postReplies        <br>
             $postShares         <br>
             $postLikes          <br>
+            <form onsubmit="createReport(event, $postID, 'user1')">
+                <div class="form-section-submit">
+                    <input type="submit" value="Report" id="report-button-{$postID}">
+                </div>
+            </form>
         </div>
+
+        <script defer async src="/public/js/lib.js"></script>
+        <script defer async src="/public/js/report-post.js"></script>
     </a>
     <br>
     EOT;

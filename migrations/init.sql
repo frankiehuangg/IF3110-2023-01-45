@@ -56,9 +56,10 @@ CREATE TABLE posting (
 );
 
 CREATE TABLE post_reports (
-    post_id INTEGER PRIMARY KEY REFERENCES posts(post_id),
+    post_id INTEGER REFERENCES posts(post_id),
     reporter VARCHAR(45) REFERENCES users(username),
-    description TEXT NOT NULL
+    description TEXT NOT NULL,
+    PRIMARY KEY (post_id, reporter)
 );
 
 CREATE TABLE likes (
