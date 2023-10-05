@@ -26,6 +26,13 @@ function PostCard($post) {
             $postReplies        <br>
             $postShares         <br>
             $postLikes          <br>
+            <form onsubmit="like(event, 'user1', $postID)">
+            <div class="form-section-submit">
+                <input type="submit" value="Like" id="like-button-{$postID}">
+            </div>
+            </form>
+            <script defer async src="/public/js/lib.js"></script>
+            <script defer async src="/public/js/like-post.js"></script>
         </div>
     </a>
     <br>
