@@ -33,6 +33,17 @@ class UserService extends BaseService {
         return $user;
     }
 
+    public function getById($id) {
+        $user = new UserModel();
+
+        $user_sql = $this->repository->getById($id);
+        if ($user_sql) {
+            $user->constructFromArray($user_sql);
+        }
+
+        return $user;
+    }
+
     public function getByUsername($username) {
         $user = new UserModel();
 
@@ -40,6 +51,29 @@ class UserService extends BaseService {
         if ($user_sql) {
             $user->constructFromArray($user_sql);
         }
+
+        return $user;
+    }
+
+    public function create($username, $email, $password) {
+        $user = new UserModel();
+        $user->set('username', $username);
+        $user->set('email', $email);
+        $user->set('password', $password);
+
+        $put = $this->repository->insert($user, array(
+            'username' => PDO::PARAM_STR,
+            'email' => PDO::PARAM_STR,
+            'password' => PDO::PARAM_STR
+        ));
+
+        $find = $this->repository->getById($put);
+        $user = new UserModel();
+        $user = $user->constructFromArray($find);
+
+
+        $_SESSION['user_id'] = $user->user_id;
+        $_SESSION['is_admin'] = $user->is_admin;
 
         return $user;
     }

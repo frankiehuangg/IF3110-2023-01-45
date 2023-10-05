@@ -11,7 +11,7 @@ class AuthService extends BaseService {
     private $user_service;
 
     private function __construct() {
-        $this->pengguna_service = UserService::getInstance();
+        $this->user_service = UserService::getInstance();
     }
 
     public static function getInstance() {
@@ -35,19 +35,21 @@ class AuthService extends BaseService {
             throw new BadRequestException('Password and confirm password do not match');
         }
 
-        $user_model = $this->pengguna_service->create($username, $email, $password);
+        $user_model = $this->user_service->create($username, $email, $password);
+    
+        return $user_model;
     }
 
     public function login($email_username, $password) {
         $user = null;
 
-        $user_by_email = $this->pengguna_service->getByUsername($email_username);
+        $user_by_email = $this->user_service->getByUsername($email_username);
         if ($user_by_email && !is_null($user_by_email->getUsername())) {
             $user = $user_by_email;
         }
 
         if (is_null($user)) {
-            $user_by_username = $this->pengguna_service->getByUsername($email_username);
+            $user_by_username = $this->user_service->getByUsername($email_username);
             if ($user_by_username && !is_null($user_by_username->getUsername())) {
                 $user = $user_by_username;
             }
@@ -60,12 +62,11 @@ class AuthService extends BaseService {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
         if (!password_verify($user->getPassword(), $password_hash)) {
-            echo "Password is " . $password . " db password is " . $user->getPassword();
             throw new BadRequestException('Password doesn\'t match!');
         }
 
-        $_SESSION['user_id'] = $user->getUsername();
-        $_SESSION['is_admin'] = $user->isAdmin();
+        $_SESSION['user_id'] = $user->user_id;
+        $_SESSION['is_admin'] = $user->is_admin;
 
         return $user;
     }

@@ -18,6 +18,10 @@ class UserRepository extends BaseRepository {
         return self::$instance;
     }
 
+    public function getById($user_id) {
+        return $this->findOne(['user_id' => [$user_id, PDO::PARAM_INT]]);
+    }
+
     public function getByUsername($username) {
         return $this->findOne(['username' => [$username, PDO::PARAM_STR]]);
     }
