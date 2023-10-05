@@ -13,6 +13,8 @@ require_once PROJECT_ROOT_PATH . '/src/controllers/posts/PostController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/posts/CreatePostController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/posts/RetrievePostController.php';
 
+require_once PROJECT_ROOT_PATH . '/src/controllers/auth/LoginController.php';
+
 require_once PROJECT_ROOT_PATH . "/src/controllers/upload/FileUploadController.php";
 
 $routeHandler = new APIRouter();
@@ -22,6 +24,8 @@ $routeHandler->addHandler('/api', CheckHealthController::getInstance(), []);
 $routeHandler->addHandler('/api/post', PostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/create', CreatePostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/get', RetrievePostController::getInstance(), []);
+
+$routeHandler->addHandler('/api/auth/login', LoginController::getInstance(), []);
 
 $routeHandler->addHandler('/api/upload', FileUploadController::getInstance (), []);
 

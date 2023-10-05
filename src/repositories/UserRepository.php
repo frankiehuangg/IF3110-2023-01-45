@@ -21,6 +21,10 @@ class UserRepository extends BaseRepository {
     public function getByUsername($username) {
         return $this->findOne(['username' => [$username, PDO::PARAM_STR]]);
     }
+
+    public function getByEmail($email) {
+        return $this->findOne(['email' => [$email, PDO::PARAM_STR]]);
+    }
 };
 
 ?>

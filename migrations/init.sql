@@ -4,34 +4,25 @@ DROP TABLE IF EXISTS posting;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS resource;
 DROP TABLE IF EXISTS user_reports;
-DROP TABLE IF EXISTS admin;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS pengguna;
-
-CREATE TABLE pengguna (
-    username VARCHAR(45) PRIMARY KEY,
-    email VARCHAR(45) UNIQUE NOT NULL,
-    password VARCHAR(256) NOT NULL
-);
-
-INSERT INTO pengguna VALUES 
-    ('user1', 'user1@gmail.com', 'user1'),
-    ('user2', 'user2@gmail.com', 'user2'),
-    ('admin1', 'admin1@gmail.com', 'admin1');
 
 CREATE TABLE users (
-    username VARCHAR(45) PRIMARY KEY REFERENCES pengguna(username),
+    username VARCHAR(45) PRIMARY KEY,
+    password VARCHAR(256) NOT NULL,
+    email VARCHAR(45) UNIQUE NOT NULL,
     description VARCHAR(280),
     follower_count INTEGER DEFAULT 0,
     following_count INTEGER DEFAULT 0,
     join_date TIMESTAMP DEFAULT NOW(),
-    birthday DATE NOT NULL,
-    profile_picture_path VARCHAR(256)
+    birthday DATE,
+    profile_picture_path VARCHAR(256),
+    is_admin BOOLEAN DEFAULT FALSE NOT NULL
 );
 
-CREATE TABLE admin (
-    username VARCHAR(45) PRIMARY KEY REFERENCES pengguna(username)
-);
+INSERT INTO users (username, password, email, is_admin) VALUES 
+    ('user1', 'user1', 'user1@gmail.com', FALSE),
+    ('user2', 'user2', 'user2@gmail.com', FALSE),
+    ('admin1', 'admin1', 'admin1@gmail.com', TRUE);
 
 CREATE TABLE user_reports (
     user_id VARCHAR(45) PRIMARY KEY REFERENCES users(username),
