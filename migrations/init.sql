@@ -53,9 +53,8 @@ INSERT INTO posts VALUES
 
 CREATE TABLE resources (
     post_id INTEGER REFERENCES posts(post_id),
-    resource_id SERIAL,
     resource_path VARCHAR(256) NOT NULL,
-    PRIMARY KEY (post_id, resource_id)
+    PRIMARY KEY (post_id, resource_path)
 );
 
 CREATE TABLE posting (
