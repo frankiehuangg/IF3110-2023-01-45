@@ -14,11 +14,6 @@
               <input type="text" name="post-content" placeholder="Type the post content" id="input-post-content" required>
             </div>
 
-            <!-- <div class="form-section">
-              <label for="res-id">id</label> <br>
-              <input type="text" name="res-id" placeholder="Type the post content" id="input-res-id" required>
-            </div> -->
-
             <div class="form-section">
               <label>Pictures (optional)</label> <br>
               <input type="file" name="file-resource" id="input-files" accept="image/*" multiple>
