@@ -23,9 +23,11 @@ class DetailPostController extends BaseController {
     public function get($urlParams) {
         $post_id = $_GET['post_id'];
 
-        $post = $this->service->getByID($post_id);
+        $response = $this->service->getPostByID($post_id);
 
-        $response = new BaseResponse(true, $post, 'Posts retrieved successfully', 200);
+        $html = PostCard([$response[0]->toResponse(), $response[1]->toResponse()]);
+
+        $response = new BaseResponse(true, $html, 'Posts retrieved successfully', 200);
 
         return $response->toJSON();
     }
