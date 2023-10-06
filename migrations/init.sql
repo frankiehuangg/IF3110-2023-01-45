@@ -16,7 +16,9 @@ CREATE TABLE users (
     follower_count INTEGER DEFAULT 0,
     following_count INTEGER DEFAULT 0,
     join_date TIMESTAMP DEFAULT NOW(),
-    birthday DATE,
+    birthday_date INTEGER,
+    birthday_month INTEGER,
+    birthday_year INTEGER,
     profile_picture_path VARCHAR(256) DEFAULT '/public/images/default.jpg',
     is_admin BOOLEAN DEFAULT FALSE NOT NULL
 );
