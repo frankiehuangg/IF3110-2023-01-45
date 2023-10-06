@@ -12,7 +12,9 @@ class UserModel extends BaseModel {
     public $follower_count;
     public $following_count;
     public $join_date;
-    public $birthday;
+    public $birthday_date;
+    public $birthday_month;
+    public $birthday_year;
     public $profile_picture_path;
     public $is_admin;
 
@@ -30,7 +32,9 @@ class UserModel extends BaseModel {
         $this->follower_count           = $array['follower_count'];
         $this->following_count          = $array['following_count'];
         $this->join_date                = $array['join_date'];
-        $this->birthday                 = $array['birthday'];
+        $this->birthday_date            = $array['birthday_date'];
+        $this->birthday_month           = $array['birthday_month'];
+        $this->birthday_year            = $array['birthday_year'];
         $this->profile_picture_path     = $array['profile_picture_path'];
         $this->is_admin                 = $array['is_admin'];
 
@@ -48,7 +52,9 @@ class UserModel extends BaseModel {
             'follower_count'        => $this->follower_count,
             'following_count'       => $this->following_count,
             'join_date'             => $this->join_date,
-            'birthday'              => $this->birthday,
+            'birthday_date'         => $this->birthday_date,
+            'birthday_month'        => $this->birthday_month,
+            'birthday_year'         => $this->birthday_year,
             'profile_picture_path'  => $this->profile_picture_path,
             'is_admin'              => $this->is_admin
         );
