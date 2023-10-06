@@ -2,6 +2,7 @@
 
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseController.php';
 require_once PROJECT_ROOT_PATH . '/src/services/PostService.php';
+require_once PROJECT_ROOT_PATH . '/src/components/PostCard.php';
 
 class DetailPostController extends BaseController {
     protected static $instance;
