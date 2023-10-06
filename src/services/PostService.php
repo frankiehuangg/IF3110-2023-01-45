@@ -8,18 +8,21 @@ require_once PROJECT_ROOT_PATH . '/src/models/ResourceModel.php';
 
 class PostService extends BaseService {
     protected static $instance;
+    protected $user_repository;
     protected $post_repository;
     protected $resource_repository;
 
-    private function __construct($post_repository, $resource_repository) {
-        $this->post_repository = $post_repository;
-        $this->resource_repository = $resource_repository;
+    private function __construct($post_repository, $user_repository, $resource_repository) {
+        $this->post_repository      = $post_repository;
+        $this->user_repository      = $user_repository;
+        $this->resource_repository  = $resource_repository;
     }
 
     public static function getInstance() {
         if (!(isset(self::$instance))) {
             self::$instance = new static(
                 PostRepository::getInstance(),
+                UserRepository::getInstance(),
                 ResourceRepository::getInstance()
             );
         }
@@ -51,8 +54,10 @@ class PostService extends BaseService {
         $post = new PostModel();
 
         $post->set('post_content', $post_content);
+        $post->set('user_id', $_SESSION['user_id']);
 
         $post_last_id = $this->post_repository->insert($post, array(
+            'user_id'      => PDO::PARAM_INT,
             'post_content' => PDO::PARAM_STR
         ));
 
@@ -62,33 +67,63 @@ class PostService extends BaseService {
         $result_post->constructFromArray($post_sql);
 
         $result_resource = array();
-        foreach ($post_resources as $post_resource) {
-            $resource = new ResourceModel();
-
-            $resource->set('post_id', $post_last_id);
-            $resource->set('resource_path', $post_resource);
-
-            $resource_last_id = $this->resource_repository->insert($resource, array(
-                'post_id'       => PDO::PARAM_INT,
-                'resource_path' => PDO::PARAM_STR
-            ));
-            $result_sql = $this->resource_repository->getByID($resource_last_id);
-
-            $resource_model = new ResourceModel();
-            $resource_model->constructFromArray($result_sql);
-            $result_resource[] = $resource_model;
+        if (isset($post_resources)) {
+            foreach ($post_resources as $post_resource) {
+                $resource = new ResourceModel();
+    
+                $resource->set('post_id', $post_last_id);
+                $resource->set('resource_path', $post_resource);
+    
+                $resource_last_id = $this->resource_repository->insert($resource, array(
+                    'post_id'       => PDO::PARAM_INT,
+                    'resource_path' => PDO::PARAM_STR
+                ));
+                $result_sql = $this->resource_repository->getByID($resource_last_id);
+    
+                $resource_model = new ResourceModel();
+                $resource_model->constructFromArray($result_sql);
+                $result_resource[] = $resource_model;
+            }
         }
 
         return [$result_post, $result_resource];
     }
 
+    public function getByID($post_id) {
+        $post_sql = $this->post_repository->getByID($post_id);
+
+        $post = new PostModel();
+        $post->constructFromArray($post_sql);
+
+        $user_id = $post->get('user_id');
+        $user_sql = $this->user_repository->findOne([
+            'user_id'   => [$user_id, PDO::PARAM_INT]
+        ]);
+        $user = new UserModel();
+        $user->constructFromArray($user_sql);
+
+        return [$post, $user];
+    }
+
     public function getNLastPosts($n) {
-        $postsSQL = $this->post_repository->getNLastRow($n);
+        $posts_sql = $this->post_repository->getNLastRow($n);
+
         $posts = [];
 
-        foreach ($postsSQL as $postSQL) {
-            $post = new PostModel();
-            $posts[] = $post->constructFromArray($postSQL);
+        if (isset($posts_sql)) {
+            foreach ($posts_sql as $post_sql) {
+                $post = new PostModel();
+                $post->constructFromArray($post_sql);
+
+                $user_id = $post->get('user_id');
+                $user_sql = $this->user_repository->findOne([
+                    'user_id'   => [$user_id, PDO::PARAM_INT]
+                ]);
+                $user = new UserModel();
+                $user->constructFromArray($user_sql);
+
+                $posts[] = [$post, $user];
+            }
         }
 
         return $posts;
