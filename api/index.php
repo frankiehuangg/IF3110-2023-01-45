@@ -10,6 +10,7 @@ require_once PROJECT_ROOT_PATH . '/src/controllers/shared/CheckHealthController.
 require_once PROJECT_ROOT_PATH . '/src/middlewares/CheckAdmin.php';
 
 require_once PROJECT_ROOT_PATH . '/src/controllers/posts/PostController.php';
+require_once PROJECT_ROOT_PATH . '/src/controllers/posts/DetailPostController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/posts/CreatePostController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/posts/RetrievePostController.php';
 
@@ -26,6 +27,7 @@ $routeHandler->addHandler('/api', CheckHealthController::getInstance(), []);
 $routeHandler->addHandler('/api/post', PostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/create', CreatePostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/get', RetrievePostController::getInstance(), []);
+$routeHandler->addHandler('/api/post/*', DetailPostController::getInstance(), []);
 
 $routeHandler->addHandler('/api/auth/login', LoginController::getInstance(), []);
 
