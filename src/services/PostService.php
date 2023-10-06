@@ -89,7 +89,7 @@ class PostService extends BaseService {
         return [$result_post, $result_resource];
     }
 
-    public function getByID($post_id) {
+    public function getPostByID($post_id) {
         $post_sql = $this->post_repository->getByID($post_id);
 
         $post = new PostModel();
@@ -127,6 +127,25 @@ class PostService extends BaseService {
         }
 
         return $posts;
+    }
+
+    public function updatePost($post_id, $post_content) {
+        $post = $this->getPostByID($post_id)[0];
+        $post->set('post_content', $post_content);
+
+        $this->post_repository->update($post, array(
+            'post_content'  => PDO::PARAM_STR
+        ));
+
+        $post = $this->getPostByID($post_id);
+
+        return $post;
+    }
+
+    public function deletePost($post_id) {
+        $post = new PostModel();
+        $post->set('post_id', $post_id);
+        return $this->post_repository->delete($post);
     }
 }
 
