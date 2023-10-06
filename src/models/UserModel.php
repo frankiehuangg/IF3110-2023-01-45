@@ -36,6 +36,23 @@ class UserModel extends BaseModel {
 
         return $this;
     }
+
+    public function toResponse() {
+        return array(
+            'user_id'               => $this->user_id,
+            'username'              => $this->username,
+            'password'              => $this->password,
+            'email'                 => $this->email,
+            'description'           => $this->description,
+            'display_name'          => $this->display_name,
+            'follower_count'        => $this->follower_count,
+            'following_count'       => $this->following_count,
+            'join_date'             => $this->join_date,
+            'birthday'              => $this->birthday,
+            'profile_picture_path'  => $this->profile_picture_path,
+            'is_admin'              => $this->is_admin
+        );
+    }
 }
 
 ?>
