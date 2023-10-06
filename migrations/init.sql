@@ -12,11 +12,12 @@ CREATE TABLE users (
     password VARCHAR(256) NOT NULL,
     email VARCHAR(45) UNIQUE NOT NULL,
     description VARCHAR(280),
+    display_name VARCHAR(45),
     follower_count INTEGER DEFAULT 0,
     following_count INTEGER DEFAULT 0,
     join_date TIMESTAMP DEFAULT NOW(),
     birthday DATE,
-    profile_picture_path VARCHAR(256),
+    profile_picture_path VARCHAR(256) DEFAULT '/public/images/default.jpg',
     is_admin BOOLEAN DEFAULT FALSE NOT NULL
 );
 
@@ -32,6 +33,7 @@ CREATE TABLE user_reports (
 
 CREATE TABLE posts (
     post_id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(user_id),
     post_content VARCHAR(280) NOT NULL,
     post_timestamp TIMESTAMP DEFAULT NOW(),
     likes INTEGER DEFAULT 0,
@@ -40,19 +42,14 @@ CREATE TABLE posts (
 );
 
 INSERT INTO posts VALUES
-    (1, 'New post!', NOW(), 1, 1, 1),
-    (2, 'post of the week!', NOW(), 0, 1, 1);
+    (1, 1, 'New post!', NOW(), 1, 1, 1),
+    (2, 1, 'post of the week!', NOW(), 0, 1, 1),
+    (3, 2, 'amongus', NOW(), 0, 1, 1);
 
 CREATE TABLE resources (
     post_id INTEGER REFERENCES posts(post_id),
     resource_path VARCHAR(256) NOT NULL,
     PRIMARY KEY (post_id, resource_path)
-);
-
-CREATE TABLE posting (
-    username VARCHAR(45) REFERENCES users(username),
-    post_id INTEGER REFERENCES posts(post_id),
-    PRIMARY KEY (username, post_id)
 );
 
 CREATE TABLE post_reports (
