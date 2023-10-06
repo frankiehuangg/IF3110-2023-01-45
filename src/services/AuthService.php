@@ -44,13 +44,13 @@ class AuthService extends BaseService {
         $user = null;
 
         $user_by_email = $this->user_service->getByUsername($email_username);
-        if ($user_by_email && !is_null($user_by_email->getUsername())) {
+        if ($user_by_email && !is_null($user_by_email->get('username'))) {
             $user = $user_by_email;
         }
 
         if (is_null($user)) {
             $user_by_username = $this->user_service->getByUsername($email_username);
-            if ($user_by_username && !is_null($user_by_username->getUsername())) {
+            if ($user_by_username && !is_null($user_by_username->get('username'))) {
                 $user = $user_by_username;
             }
         }
@@ -61,7 +61,7 @@ class AuthService extends BaseService {
 
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-        if (!password_verify($user->getPassword(), $password_hash)) {
+        if (!password_verify($user->get('password'), $password_hash)) {
             throw new BadRequestException('Password doesn\'t match!');
         }
 

@@ -15,7 +15,6 @@ const register = async (event) => {
 
     const lib = new Lib();
     const response = await lib.post('/api/auth/register', data);
-    console.log(response);
     const json = JSON.parse(response);
 
     if (json.success) {

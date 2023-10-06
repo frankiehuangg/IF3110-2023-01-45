@@ -6,9 +6,10 @@
         <meta name="viewport" content="width=device-width, initial=scale=1.0">
         <link rel="stylesheet" href="/public/css/global.css">
         <link rel="stylesheet" href="/public/css/home.css">
-        <title>Home</title>
+        <title>Create A Post</title>
     </head>
     <body>
+    <div class="form-container">
         <div class="page d-flex">
             <div id="main">
                 <div id="content">
@@ -17,8 +18,8 @@
                 </div>
             </div>
         </div>
-        
+
         <script defer async src="/public/js/lib.js"></script>
-        <script defer async src="/public/js/home.js"></script>
+        <script defer async src="/public/js/post-detail.js"></script>
     </body>
 </html>

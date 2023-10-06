@@ -104,8 +104,6 @@ abstract class BaseRepository {
             $VALUE = htmlspecialchars($val[1]);
             $TYPE  = htmlspecialchars($val[2]);
 
-            # $stmt->bindValue(':$key', $VALUE, $TYPE);
-
             $LIKE_CASE_EXIST = ($val[0] === 1);
             if ($LIKE_CASE_EXIST) {
                 $VALUE = "%$VALUE$";
@@ -136,7 +134,7 @@ abstract class BaseRepository {
         $stmt = $this->pdo->prepare($sql);
         foreach ($params as $key => $val) {
             $VALUE = htmlspecialchars($val[0]);
-            $TYPE  = htmlspecialchars($val[1]);
+            $TYPE  = $val[1];
 
             $stmt->bindValue(":$key", $VALUE, $TYPE);
         }
@@ -208,7 +206,7 @@ abstract class BaseRepository {
             $TYPE  = $val;
             $stmt->bindValue(":$key", $VALUE, $TYPE);
         }
-        $stmt->bindValue(":primaryKey", $model->get($primary_key), PDO::PARAM_INT);
+        $stmt->bindValue(":primaryKey", $model->get($primaryKey), PDO::PARAM_INT);
 
         $stmt->execute();
         return $stmt->rowCount();
@@ -226,10 +224,37 @@ abstract class BaseRepository {
         return $stmt->rowCount();
     }
 
-    public function getNLastRow($n) {
+    public function getNLastRow($n, $where=[]) {
         $sql = "SELECT COUNT(*) FROM $this->tableName";
 
+        $WHERE_CASE_EXIST = (count($where) > 0);
+        if ($WHERE_CASE_EXIST) {
+            $sql = $sql . " WHERE ";
+
+            $sql = $sql . implode(" AND ", array_map(function($key, $val) {
+                $LIKE_CASE_EXIST = ($val[0] === 1);
+                if ($LIKE_CASE_EXIST) {
+                    return "$key LIKE :$key";
+                }
+
+                return "$key = :$key";
+            }, array_keys($where), array_values($where)));
+        }
+
         $stmt = $this->pdo->prepare($sql);
+
+        foreach ($where as $key => $val) {
+            $VALUE = htmlspecialchars($val[1]);
+            $TYPE  = htmlspecialchars($val[2]);
+
+            $LIKE_CASE_EXIST = ($val[0] === 1);
+            if ($LIKE_CASE_EXIST) {
+                $stmt->bindValue(":$key", "%$VALUE%", $TYPE);
+            } else {
+                $stmt->bindValue(":$key", $VALUE, $TYPE);
+            }
+        }
+
         $stmt->execute();
 
         $count = $stmt->fetchColumn();
@@ -240,11 +265,40 @@ abstract class BaseRepository {
 
         $offset = $count - $n;
 
-        $sql = "SELECT * FROM $this->tableName LIMIT :limit OFFSET :offset";
+        $sql = "SELECT * FROM $this->tableName";
+
+        $WHERE_CASE_EXIST = (count($where) > 0);
+        if ($WHERE_CASE_EXIST) {
+            $sql = $sql . " WHERE ";
+
+            $sql = $sql . implode(" AND ", array_map(function($key, $val) {
+                $LIKE_CASE_EXIST = ($val[0] === 1);
+                if ($LIKE_CASE_EXIST) {
+                    return "$key LIKE :$key";
+                }
+
+                return "$key = :$key";
+            }, array_keys($where), array_values($where)));
+        }
+
+        $sql = $sql .  " LIMIT :limit OFFSET :offset";
 
         $stmt = $this->pdo->prepare($sql);
+
+        foreach ($where as $key => $val) {
+            $VALUE = htmlspecialchars($val[1]);
+            $TYPE  = htmlspecialchars($val[2]);
+
+            $LIKE_CASE_EXIST = ($val[0] === 1);
+            if ($LIKE_CASE_EXIST) {
+                $stmt->bindValue(":$key", "%$VALUE%", $TYPE);
+            } else {
+                $stmt->bindValue(":$key", $VALUE, $TYPE);
+            }
+        }
         $stmt->bindValue(':limit', $n, PDO::PARAM_INT);
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+
         $stmt->execute();
 
         $params = $stmt->fetchAll();

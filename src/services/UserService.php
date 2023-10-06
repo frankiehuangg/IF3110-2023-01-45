@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseService.php';
 require_once PROJECT_ROOT_PATH . '/src/repositories/UserRepository.php';
 require_once PROJECT_ROOT_PATH . '/src/models/UserModel.php';
