@@ -3,7 +3,7 @@
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseController.php';
 require_once PROJECT_ROOT_PATH . '/src/services/PostService.php';
 
-class DetailPostController extends BaseController {
+class DeletePostController extends BaseController {
     protected static $instance;
 
     private function __construct($service) {
@@ -20,14 +20,12 @@ class DetailPostController extends BaseController {
         return self::$instance;
     }
 
-    public function get($urlParams) {
-        $post_id = $_GET['post_id'];
+    public function delete($urlParams) {
+        $post_id = $urlParams[0];
 
-        $response = $this->service->getPostByID($post_id);
+        $post = $this->service->deletePost($post_id);
 
-        $html = PostCard([$response[0]->toResponse(), $response[1]->toResponse()]);
-
-        $response = new BaseResponse(true, $html, 'Posts retrieved successfully', 200);
+        $response = new BaseResponse(true, $post, 'Post deleted successfully', 200);
 
         return $response->toJSON();
     }

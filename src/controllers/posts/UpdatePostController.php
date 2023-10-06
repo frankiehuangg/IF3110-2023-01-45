@@ -3,7 +3,7 @@
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseController.php';
 require_once PROJECT_ROOT_PATH . '/src/services/PostService.php';
 
-class DetailPostController extends BaseController {
+class UpdatePostController extends BaseController {
     protected static $instance;
 
     private function __construct($service) {
@@ -20,14 +20,14 @@ class DetailPostController extends BaseController {
         return self::$instance;
     }
 
-    public function get($urlParams) {
-        $post_id = $_GET['post_id'];
+    public function patch($urlParams) {
+        $post_id = $urlParams[0];
+        parse_str(file_get_contents('php://input'), $_PATCH);
+        $post_content = $_PATCH['post_content'];
 
-        $response = $this->service->getPostByID($post_id);
+        $post = $this->service->updatePost($post_id, $post_content);
 
-        $html = PostCard([$response[0]->toResponse(), $response[1]->toResponse()]);
-
-        $response = new BaseResponse(true, $html, 'Posts retrieved successfully', 200);
+        $response = new BaseResponse(true, $post, 'Post updated successfully', 200);
 
         return $response->toJSON();
     }
