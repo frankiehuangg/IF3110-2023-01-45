@@ -23,11 +23,6 @@ CREATE TABLE users (
     is_admin BOOLEAN DEFAULT FALSE NOT NULL
 );
 
-INSERT INTO users (username, password, email, is_admin) VALUES 
-    ('user1', 'user1', 'user1@gmail.com', FALSE),
-    ('user2', 'user2', 'user2@gmail.com', FALSE),
-    ('admin1', 'admin1', 'admin1@gmail.com', TRUE);
-
 CREATE TABLE user_reports (
     user_id VARCHAR(45) PRIMARY KEY REFERENCES users(username),
     description TEXT NOT NULL
@@ -42,11 +37,6 @@ CREATE TABLE posts (
     replies INTEGER DEFAULT 0,
     shares INTEGER DEFAULT 0
 );
-
-INSERT INTO posts VALUES
-    (1, 1, 'New post!', NOW(), 1, 1, 1),
-    (2, 1, 'post of the week!', NOW(), 0, 1, 1),
-    (3, 2, 'amongus', NOW(), 0, 1, 1);
 
 CREATE TABLE resources (
     post_id INTEGER REFERENCES posts(post_id),
@@ -77,3 +67,58 @@ CREATE TABLE follows (
     followed_user VARCHAR(45) REFERENCES users(username),
     PRIMARY KEY (following_user, followed_user)
 );
+
+-- INSERT
+
+INSERT INTO users (username, password, email, is_admin) VALUES 
+    ('user1', 'user1', 'user1@gmail.com', FALSE),
+    ('user2', 'user2', 'user2@gmail.com', FALSE),
+    ('admin1', 'admin1', 'admin1@gmail.com', TRUE);
+
+INSERT INTO posts VALUES
+    (1, 1, 'New post!', NOW(), 1, 1, 1),
+    (2, 1, 'post of the week!', NOW(), 0, 1, 1),
+    (3, 2, 'amongus', NOW(), 0, 1, 1);
+
+-- TRIGGER
+
+UPDATE posts AS p
+SET likes = (
+    SELECT COUNT(*)
+    FROM likes AS l
+    WHERE l.post_id = p.post_id
+);
+
+CREATE OR REPLACE FUNCTION increase_likes_count()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE posts AS p
+    SET likes = likes + 1
+    WHERE p.post_id = NEW.post_id;
+    RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER increase_likes_count_trigger
+AFTER INSERT ON likes
+FOR EACH ROW
+EXECUTE FUNCTION increase_likes_count();
+
+CREATE OR REPLACE FUNCTION decrease_likes_count()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE posts AS p
+    SET likes = likes - 1
+    WHERE p.post_id = OLD.post_id;
+    RETURN OLD;
+END;
+$$;
+
+CREATE TRIGGER decrease_likes_count_trigger
+AFTER DELETE ON likes
+FOR EACH ROW
+EXECUTE FUNCTION decrease_likes_count();
