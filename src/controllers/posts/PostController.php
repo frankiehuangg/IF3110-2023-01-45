@@ -4,6 +4,7 @@ require_once PROJECT_ROOT_PATH . '/src/bases/BaseController.php';
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseResponse.php';
 require_once PROJECT_ROOT_PATH . '/src/services/PostService.php';
 require_once PROJECT_ROOT_PATH . '/src/repositories/PostRepository.php';
+require_once PROJECT_ROOT_PATH . '/src/components/PostCard.php';
 
 class PostController extends BaseController {
     protected static $instance;
@@ -30,7 +31,14 @@ class PostController extends BaseController {
             return $post->toResponse();
         }, $posts);
 
-        $response = new BaseResponse(true, $response_posts, 'Posts retrieved successfully', 200);
+        $html = "";
+        foreach ($response_posts as $response_post) {
+            $html = $html . PostCard($response_post);
+        }
+
+        echo $html;
+
+        $response = new BaseResponse(true, $html, 'Posts retrieved successfully', 200);
 
         return $response->toJSON();
     }
