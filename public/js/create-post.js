@@ -31,7 +31,6 @@ async function submitForm(event) {
     if (resourceFiles) payload.resources = resourceUploadResultsJSON;
 
     const res = await lib.post('/api/post/create', payload);
-    console.log(res);
     const json = JSON.parse(res);
 
     if (json.success) {
