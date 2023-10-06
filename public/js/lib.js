@@ -41,8 +41,8 @@ class Lib {
         return await this.promiseAjax(url, payload, asXML, 'POST');
     }
 
-    async put(url, payload, asXML) {
-        return await this.promiseAjax(url, payload, asXML, 'PUT');
+    async patch(url, payload, asXML) {
+        return await this.promiseAjax(url, payload, asXML, 'PATCH');
     }
 
     async delete(url, asXML) {
