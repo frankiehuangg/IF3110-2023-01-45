@@ -35,6 +35,13 @@ class AuthService extends BaseService {
             throw new BadRequestException('Password and confirm password do not match');
         }
 
+        if (!is_null($this->user_service->getByEmail($email)->get('email'))) {
+            throw new BadRequestException('Email already exists!');
+        }
+        if (!is_null($this->user_service->getByUsername($username)->get('username'))) {
+            throw new BadRequestException('Username already exists!');
+        }
+
         $user_model = $this->user_service->create($username, $email, $password);
     
         return $user_model;
