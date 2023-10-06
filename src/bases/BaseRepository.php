@@ -191,7 +191,7 @@ abstract class BaseRepository {
             $sql = $sql . "$key = :$key";
 
             if ($i < count($params) - 1) {
-                $sql = $sql . '. ';
+                $sql = $sql . ', ';
             }
 
             $i++;
