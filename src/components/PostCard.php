@@ -22,14 +22,35 @@ function PostCard($response_post) {
             <div class="node content_node">
                 <div class="top_content_node">
                     <div class="node top_content_node_display_name">$display_name</div>
-                    <div class="node top_content_node_username">@$username</div>
+                    <div class="node top_content_node_username">@$username | </div>
                     <div class="node top_content_node_post_timestamp">$post_timestamp</div>
                 </div>
                 <div class="node middle_content_node">$post_content</div>
                 <div class="bottom_content_node">
-                    <div class="node bottom_content_node_replies">$replies</div>
-                    <div class="node bottom_content_node_shares">$shares</div>
-                    <div class="node bottom_content_node_likes">$likes</div>
+                    <div class="node bottom_content_node_element">
+                        <div class="bottom_content_node_icon">
+                            <i class="bi bi-chat-left"></i>
+                        </div>
+                        <div class="bottom_content_node_text">
+                            $replies
+                        </div>
+                    </div>
+                    <div class="node bottom_content_node_element">
+                        <div class="bottom_content_node_icon">
+                            <i class="bi bi-repeat"></i>
+                        </div>
+                        <div class="bottom_content_node_text">
+                            $shares
+                        </div>                        
+                    </div>
+                    <div class="node bottom_content_node_element">
+                        <div class="bottom_content_node_icon">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <div class="bottom_content_node_text">
+                            $likes
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
