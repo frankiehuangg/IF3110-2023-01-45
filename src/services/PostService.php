@@ -50,6 +50,20 @@ class PostService extends BaseService {
         return $posts;
     }
 
+    public function getAllByUserID($user_id) {
+        $where['user_id'] = [0, $user_id, PDO::PARAM_INT];
+
+        $posts_sql = $this->post_repository->findAll($where);
+
+        $posts = [];
+        foreach ($posts_sql as $post_sql) {
+            $post = new PostModel();
+            $posts[] = $post->constructFromArray($post_sql);
+        }
+
+        return $posts;
+    }
+
     public function createPost($post_content, $post_resources) {
         $post = new PostModel();
 
