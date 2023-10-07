@@ -1,0 +1,79 @@
+body, p {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.centerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    min-height: 100vh;
+    min-width: 100vw;
+    flex-wrap: wrap;
+}
+
+.centerContainer img {
+    margin: 10%;
+}
+
+.dataInputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10%;
+    padding: 2%;
+    border: 2px solid black;
+    border-radius: 10px;
+    min-width: 15vw;
+    min-height: 45vh;
+    width: 15vw;
+    height: 50vh;
+}
+
+.dataInputHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15%;
+    font-size: 100%;
+}
+
+.Form {
+    display: flex;
+    flex-direction: column;
+    min-width: 10vw;
+    gap: 2.5vh;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+}
+
+.inputGroup input {
+    border: 0px solid;
+    border-bottom: 2px solid black;
+    outline: none;
+}
+
+.inputGroup .subtext {
+    text-align: right;
+}
+
+.subtext {
+    font-size: small;
+}
+
+.submitButton {
+    background-color: rgb(0, 119, 255);
+    border-radius: 10px;
+    padding: 3%;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    margin-top: 15%;
+}

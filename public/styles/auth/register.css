@@ -1,4 +1,4 @@
-.inputGroup .register {
+.inputGroup .subtext {
     text-align: center;
     font-size: small;
 }
@@ -15,5 +15,22 @@
 
     .inputGroup {
         width: 50vw;
+        margin: 3%;
+    }
+
+    .From {
+        gap: 1vh;
+    }
+
+    .submitButton {
+        margin-top: 5%;
+    }
+
+    .dataInputHeader {
+        margin-bottom: 0;
+    }
+
+    .loginform {
+        gap: 1vh;
     }
 }

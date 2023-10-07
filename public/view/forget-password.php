@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/public/styles/auth/auth.css">
-    <link rel="stylesheet" type="text/css" href="/public/styles/auth/register.css"> 
-    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="/public/styles/auth/forget-password.css">
+    <title>Reset Password</title>
 </head>
 <body>
     <div class="background">
@@ -13,31 +13,25 @@
             <img src="https://logos-download.com/wp-content/uploads/2016/02/Twitter_Logo_new.png" width="20%"></img>
             <div class="dataInputContainer">
                 <header class="dataInputHeader">
-                    <h1>Register</h1>
+                    <h1>Reset Password</h1>
                 </header>
-                <form class="Form" onsubmit="register(event)">
-                    <div class="inputGroup">
-                        <input type="text" name="username" id="username" placeholder="Username">
-                    </div>
+                <form class="Form" onsubmit="resetPassword(event)">
                     <div class="inputGroup">
                         <input type="email" name="email" id="email" placeholder="Email">
                     </div>
                     <div class="inputGroup">
-                        <input type="password" name="password" id="password" placeholder="Password">
+                        <input type="password" name="password" id="password" placeholder="New Password">
                     </div>
                     <div class="inputGroup">
                         <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password">
                     </div>
-                    <button type="submit" class="submitButton">Register</button>
-                    <div class="inputGroup">
-                        <p class="subtext">Already have an account? <a href="http://localhost:8008/login">login</a></p>
-                    </div>
+                    <button type="submit" class="submitButton">Reset</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <script defer async src="/public/js/register.js"></script>
+    <script defer async src="/public/js/reset-password.js"></script>
     <script defer async src="/public/js/lib.js"></script>
 </body>
 </html>
