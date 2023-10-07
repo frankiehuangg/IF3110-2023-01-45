@@ -99,15 +99,15 @@ class UserService extends BaseService {
 
     public function updateUser(
         $user_id, 
-        $username, 
-        $password, 
-        $email, 
-        $description, 
-        $display_name, 
-        $birthday_date, 
-        $birthday_month, 
-        $birthday_year, 
-        $profile_picture_path
+        $username = NULL, 
+        $password = NULL, 
+        $email = NULL, 
+        $description = NULL, 
+        $display_name = NULL, 
+        $birthday_date = NULL, 
+        $birthday_month = NULL, 
+        $birthday_year = NULL, 
+        $profile_picture_path = NULL
     ) {
         $user = $this->getById($user_id);
 
@@ -115,7 +115,7 @@ class UserService extends BaseService {
 
         if (isset($username)                ) { $user->set('username', $username);                          $params['username'] = PDO::PARAM_STR; }
         if (isset($password)                ) { $user->set('password', $password);                          $params['password'] = PDO::PARAM_STR; }
-        if (isset($email)                   ) { $user->set('email', $username);                             $params['email'] = PDO::PARAM_STR; }
+        if (isset($email)                   ) { $user->set('email', $email);                                $params['email'] = PDO::PARAM_STR; }
         if (isset($description)             ) { $user->set('description', $description);                    $params['description'] = PDO::PARAM_STR; }
         if (isset($display_name)            ) { $user->set('display_name', $display_name);                  $params['display_name'] = PDO::PARAM_STR; }
         if (isset($birthday_date)           ) { $user->set('birthday_date', $birthday_date);                $params['birthday_date'] = PDO::PARAM_INT; }

@@ -49,6 +49,21 @@ class AuthService extends BaseService {
         return $user_model;
     }
 
+    public function resetPassword($emailr, $passwordr, $confirm_password) {
+        if ($passwordr!== $confirm_password) {
+            throw new BadRequestException('Password and confirm password do not match');
+        }
+
+        $user = $this->user_service->getByEmail($emailr);
+        if (!isset($user)) {
+            throw new BadRequestException('User not found');
+        }
+
+        $user_model = $this->user_service->updateUser($user->user_id, NULL, password_hash($password, PASSWORD_DEFAULT));
+
+        return $user_model;
+    }
+
     public function login($email_username, $password) {
         $user = null;
 
