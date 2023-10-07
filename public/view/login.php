@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/public/styles/auth/auth.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/auth/login.css">
     <title>Login</title>
 </head>
@@ -14,17 +15,18 @@
                 <header class="dataInputHeader">
                     <h1>Login</h1>
                 </header>
-                <form class="loginForm" onsubmit="login(event)">
+                <form class="Form" onsubmit="login(event)">
                     <div class="inputGroup">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username">
+                        <input type="text" name="username" id="username" placeholder="Username">
                     </div>
                     <div class="inputGroup">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password">
-                        <p>forgot your password? click <a href="/public/view/register.php">here</a></p>
+                        <input type="password" name="password" id="password" placeholder="Password">
+                        <p class="subtext"><a href="http://localhost:8008/forget-pass">Forgot Password?</a></p>
                     </div>
-                    <button type="submit">Login</button>
+                    <button type="submit" class="submitButton">Login</button>
+                    <div class="inputGroup">
+                        <p class="register">Don't have an account? <a href="http://localhost:8008/register">Register</a></p>
+                    </div>
                 </form>
             </div>
         </div>
