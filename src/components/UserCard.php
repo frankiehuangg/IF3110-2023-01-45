@@ -17,22 +17,43 @@ function UserCard($response_post) {
     $profile_picture_path   = $response_post['profile_picture_path'];
 
     $html = <<<"EOT"
-    <a href="/user/$user_id" class="node post-card">
-        $username<br>
-        $email<br>
-        $description<br>
-        $display_name<br>
-        $follower_count<br>
-        $following_count<br>
-        $join_date<br>
-        $birthday_date<br>
-        $birthday_month<br>
-        $birthday_year<br>
-        $profile_picture_path<br>
-    </a>
+    <div class="profile-card">
+        <div class="profile-header">
+        </div>
+        <div class="profile-container">
+            <div class="profile-picture">
+                <img src="$profile_picture_path" class="profile-picture-img">
+            </div>
+            <div class="profile-display-name">
+                display_name
+            </div>
+            <div class="profile-username">
+                @$username
+            </div>
+            <div class="profile-join-date">
+                <div class="profile-join-date-icon">
+                    <i class="bi bi-calendar"></i>
+                </div>
+                <div class="profile-join-date-text">
+                    Joined $join_date
+                </div>
+            </div>
+            <div class="profile-follow-container">
+                <div class="profile-follow">
+                    <div class="profile-follow-count">$following_count</div>
+                    <div class="profile-follow-text">Following</div>
+                </div>
+                <div class="profile-follow">
+                    <div class="profile-follow-count">$follower_count</div>
+                    <div class="profile-follow-text">Follower</div>
+                </div>
+            </div>
+        </div>
+    </div>
     EOT;
 
     return $html;
 }
 
 ?>
+
