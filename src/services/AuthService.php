@@ -42,7 +42,9 @@ class AuthService extends BaseService {
             throw new BadRequestException('Username already exists!');
         }
 
-        $user_model = $this->user_service->create($username, $email, $password);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        $user_model = $this->user_service->create($username, $email, $hashed_password);
     
         return $user_model;
     }
@@ -66,9 +68,7 @@ class AuthService extends BaseService {
             throw new BadRequestException('User not found!');
         }
 
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-        if (!password_verify($user->get('password'), $password_hash)) {
+        if (!password_verify($password, $user->get('password'))) {
             throw new BadRequestException('Password doesn\'t match!');
         }
 
