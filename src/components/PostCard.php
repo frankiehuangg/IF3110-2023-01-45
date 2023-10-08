@@ -7,6 +7,7 @@ function PostCard($response_post) {
     $profile_picture_path   = $response_post[1]['profile_picture_path'];
     $display_name           = $response_post[1]['display_name'] ? $response_post[1]['display_name'] : $response_post[1]['username'];
     $username               = $response_post[1]['username'];
+    $user_id                = $response_post[1]['user_id'];
     $post_timestamp         = $response_post[0]['post_timestamp'];
     $post_content           = $response_post[0]['post_content'];
     $replies                = $response_post[0]['replies'];

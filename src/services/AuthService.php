@@ -22,12 +22,12 @@ class AuthService extends BaseService {
         return self::$instance;
     }
 
-    public function isAdmin() {
-        return $this->isLogin() && (isset($_SESSION['is_admin'])) && ($_SESSION['is_admin'] === 1);
-    }
-
     public function isLogin() {
         return isset($_SESSION['user_id']);
+    }
+
+    public function isAdmin() {
+        return $this->isLogin() && (isset($_SESSION['is_admin'])) && ($_SESSION['is_admin'] == 1);
     }
 
     public function register($username, $email, $password, $confirm_password) {

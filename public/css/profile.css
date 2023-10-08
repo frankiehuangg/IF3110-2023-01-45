@@ -1,7 +1,7 @@
 .profile-card {
-    background-color: #14171A;
     max-height: 350px;
     min-width: 550px;
+    border-bottom: 8px solid #38444D;
 }
 
 .profile-header {
