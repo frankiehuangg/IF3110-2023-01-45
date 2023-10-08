@@ -12,6 +12,7 @@ require_once PROJECT_ROOT_PATH . '/src/components/Searchbar.php';
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial=scale=1.0">
         <link rel="stylesheet" href="/public/css/global.css">
+        <link rel="stylesheet" href="/public/css/shared.css">
         <link rel="stylesheet" href="/public/css/home.css">
         <link rel="stylesheet" href="/public/css/sidebar.css">
         <link rel="stylesheet" href="/public/css/searchbar.css">
@@ -26,7 +27,7 @@ require_once PROJECT_ROOT_PATH . '/src/components/Searchbar.php';
             </div>
             <div class="main">
                 <div class="main-header">
-                    <h2 class="home">Home</h2>
+                    <h2 class="main-header-title">Home</h2>
                 </div>
                 <div class="tweet-box">
                     <form onsubmit="submitForm(event)">
