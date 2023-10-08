@@ -24,9 +24,14 @@ CREATE TABLE users (
 );
 
 CREATE TABLE user_reports (
-    user_id VARCHAR(45) PRIMARY KEY REFERENCES users(username),
-    description TEXT NOT NULL
+    report_id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(user_id),
+    reporter INT REFERENCES users(user_id),
+    description TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'waiting', 
+    CHECK(status = 'waiting' OR status = 'rejected' OR status = 'accepted')
 );
+
 
 CREATE TABLE posts (
     post_id SERIAL PRIMARY KEY,
@@ -79,6 +84,8 @@ INSERT INTO posts VALUES
     (1, 1, 'New post!', NOW(), 1, 1, 1),
     (2, 1, 'post of the week!', NOW(), 0, 1, 1),
     (3, 2, 'amongus', NOW(), 0, 1, 1);
+
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
 
 -- TRIGGER
 

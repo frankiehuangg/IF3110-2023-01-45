@@ -59,7 +59,7 @@ class AuthService extends BaseService {
             throw new BadRequestException('User not found');
         }
 
-        $user_model = $this->user_service->updateUser($user->user_id, NULL, password_hash($password, PASSWORD_DEFAULT));
+        $user_model = $this->user_service->updateUser($user->user_id, NULL, $passwordr);
 
         return $user_model;
     }
