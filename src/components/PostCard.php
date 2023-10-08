@@ -26,47 +26,51 @@ function PostCard($response_post) {
     $resources_html = "$resources_html </div>";
 
     $html = <<<"EOT"
-    <a href="/post/$post_id" class="node post-card">
+    <div class="node post-card">
         <div class="main_content_node">
             <div class="node profile_picture_node">
-                <img src="$profile_picture_path" class="profile_picture_img_node">
+                <a href="/user/$user_id">
+                    <img src="$profile_picture_path" class="profile_picture_img_node">
+                </a>
             </div>
-            <div class="node content_node">
-                <div class="top_content_node">
-                    <div class="node top_content_node_display_name">$display_name</div>
-                    <div class="node top_content_node_username">@$username | </div>
-                    <div class="node top_content_node_post_timestamp">$post_timestamp</div>
+            <a href="/post/$post_id" class="node post-card-2">
+                <div class="node content_node">
+                    <div class="top_content_node">
+                        <div class="node top_content_node_display_name">$display_name</div>
+                        <div class="node top_content_node_username">@$username | </div>
+                        <div class="node top_content_node_post_timestamp">$post_timestamp</div>
+                    </div>
+                    <div class="node middle_content_node">$post_content $resources_html</div>
+                    <div class="bottom_content_node">
+                        <div class="node bottom_content_node_element">
+                            <div class="bottom_content_node_icon">
+                                <i class="bi bi-chat-left"></i>
+                            </div>
+                            <div class="bottom_content_node_text">
+                                $replies
+                            </div>
+                        </div>
+                        <div class="node bottom_content_node_element">
+                            <div class="bottom_content_node_icon">
+                                <i class="bi bi-repeat"></i>
+                            </div>
+                            <div class="bottom_content_node_text">
+                                $shares
+                            </div>                        
+                        </div>
+                        <div class="node bottom_content_node_element">
+                            <div class="bottom_content_node_icon">
+                                <i class="bi bi-heart"></i>
+                            </div>
+                            <div class="bottom_content_node_text">
+                                $likes
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="node middle_content_node">$post_content $resources_html</div>
-                <div class="bottom_content_node">
-                    <div class="node bottom_content_node_element">
-                        <div class="bottom_content_node_icon">
-                            <i class="bi bi-chat-left"></i>
-                        </div>
-                        <div class="bottom_content_node_text">
-                            $replies
-                        </div>
-                    </div>
-                    <div class="node bottom_content_node_element">
-                        <div class="bottom_content_node_icon">
-                            <i class="bi bi-repeat"></i>
-                        </div>
-                        <div class="bottom_content_node_text">
-                            $shares
-                        </div>                        
-                    </div>
-                    <div class="node bottom_content_node_element">
-                        <div class="bottom_content_node_icon">
-                            <i class="bi bi-heart"></i>
-                        </div>
-                        <div class="bottom_content_node_text">
-                            $likes
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </a>
         </div>
-    </a>
+    </div>
     EOT;
 
     return $html;

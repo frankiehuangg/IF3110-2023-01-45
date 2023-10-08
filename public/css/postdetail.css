@@ -9,6 +9,11 @@
     border-bottom: 1px solid #38444D;
 }
 
+.post-card-2 {
+    width: 650px;
+    text-decoration: none;
+}
+
 .main_content_node {
     width: 100%;
     display: flex;
@@ -33,6 +38,7 @@
 .content_node {
     width: 85%;
     padding: 0 10px;
+    text-decoration: none;
 }
 
 .top_content_node {
