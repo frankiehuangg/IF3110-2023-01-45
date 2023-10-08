@@ -27,7 +27,12 @@ class RetrievePostController extends BaseController {
 
         $responses = $this->service->getNLastPosts($n);
         $response_posts = array_map(function($response) {
-            return [$response[0]->toResponse(), $response[1]->toResponse()];
+            $resources = [];
+            foreach ($response[2] as $res) {
+                $resources[] = $res->toResponse();
+            }
+            
+            return [$response[0]->toResponse(), $response[1]->toResponse(), $resources];
         }, $responses);
 
         $html = "";

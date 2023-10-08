@@ -38,7 +38,7 @@ require_once PROJECT_ROOT_PATH . '/src/components/Searchbar.php';
                                 <input type="text" placeholder="What is happening?!">
                             </div>
                             <div class="tweet-box-button">
-                                <button class="attach-file-button">
+                                <button class="attach-file-button" id="input-files">
                                     <i class="fa-solid fa-photo-film"></i>
                                 </button>
                                 <button type="submit" class="post-tweet-button">Tweet</button>

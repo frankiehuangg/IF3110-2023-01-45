@@ -26,7 +26,12 @@ class DetailPostController extends BaseController {
 
         $response = $this->service->getPostByID($post_id);
 
-        $html = PostCard([$response[0]->toResponse(), $response[1]->toResponse()]);
+        $resources = [];
+        foreach ($response[2] as $res) {
+            $resources[] = $res->toResponse();
+        }
+
+        $html = PostCard([$response[0]->toResponse(), $response[1]->toResponse(), $resources]);
 
         $response = new BaseResponse(true, $html, 'Posts retrieved successfully', 200);
 

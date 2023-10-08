@@ -12,6 +12,12 @@ function PostCard($response_post) {
     $replies                = $response_post[0]['replies'];
     $shares                 = $response_post[0]['shares'];
     $likes                  = $response_post[0]['likes'];
+    $resources              = $response_post[2];
+
+    $resources_html = "";
+    foreach ($resources as $resource) {
+        $resources_html = $resources_html . "<img src='$resource[resource_path]' />";
+    }
 
     $html = <<<"EOT"
     <a href="/post/$post_id" class="node post-card">
@@ -25,7 +31,7 @@ function PostCard($response_post) {
                     <div class="node top_content_node_username">@$username | </div>
                     <div class="node top_content_node_post_timestamp">$post_timestamp</div>
                 </div>
-                <div class="node middle_content_node">$post_content</div>
+                <div class="node middle_content_node">$post_content $resources_html</div>
                 <div class="bottom_content_node">
                     <div class="node bottom_content_node_element">
                         <div class="bottom_content_node_icon">

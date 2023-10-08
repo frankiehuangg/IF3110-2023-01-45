@@ -116,7 +116,17 @@ class PostService extends BaseService {
         $user = new UserModel();
         $user->constructFromArray($user_sql);
 
-        return [$post, $user];
+        $resources = [];
+        $resources_sql = $this->resource_repository->findAll([
+            'post_id'   => [0, $post->get('post_id'), PDO::PARAM_INT]
+        ]);
+        foreach ($resources_sql as $resource_sql) {
+            $resource = new ResourceModel();
+            $resource->constructFromArray($resource_sql);
+            $resources[] = $resource;
+        }
+
+        return [$post, $user, $resources];
     }
 
     public function getNLastPosts($n) {
@@ -136,7 +146,17 @@ class PostService extends BaseService {
                 $user = new UserModel();
                 $user->constructFromArray($user_sql);
 
-                $posts[] = [$post, $user];
+                $resources = [];
+                $resources_sql = $this->resource_repository->findAll([
+                    'post_id'   => [0, $post->get('post_id'), PDO::PARAM_INT]
+                ]);
+                foreach ($resources_sql as $resource_sql) {
+                    $resource = new ResourceModel();
+                    $resource->constructFromArray($resource_sql);
+                    $resources[] = $resource;
+                }
+
+                $posts[] = [$post, $user, $resources];
             }
         }
 
