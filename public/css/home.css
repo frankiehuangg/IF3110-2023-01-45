@@ -1,18 +1,139 @@
-body {
-    color: white;
+* {
+    margin: 0;
+    padding: 0;
+    color: #fff;
 }
 
-.node {
-    display: inline-block;
+body {
+    color: white;
+    background-color: rgb(0,0,0);
+}
+
+.page {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.left-sidebar {
+    flex: 0.45;
+    border-right: solid #38444D 1px;
+    min-width: 70px;
+}
+
+.main {
+    flex: 0.6;
+    min-width: fit-content;
+    z-index: 50;
+    background-color: black;
+}
+
+@media screen and (max-width:700px) {
+    .main {
+        width: 500px;
+    }
+}
+
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: black;
+    border: solid #38444D 1px;
+    padding: 15px 20px;
+}
+
+.home {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.tweet-box {
+    padding-bottom: 10px;
+    border-bottom: 8px solid #38444D;
+}
+
+.tweet-box form {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.tweet-box-profile-picture {
+    height: 100%;
+    margin-right: 15px;
+}
+
+.tweet-box-profile-picture-image {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+}
+
+.tweet-box-container {
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tweet-box-input {
+    display: flex;
+    padding: 8px 0 12px 0;
+}
+
+.tweet-box-input input {
+    flex: 1;
+    font-size: 20px;
+    background-color: inherit;
+    border: none;
+    outline: none;
+}
+
+.tweet-box-button {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.attach-file-button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(29, 155, 240);
+    border-radius: 30px;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.post-tweet-button {
+    background-color: rgb(29, 155, 240); /* Green */
+    border: none;
+    border-radius: 30px;
+    margin-top: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.right-sidebar {
+    flex: 0.45;
+    border-left: solid #38444D 1px;
 }
 
 .post-card {
     display: flex;
     align-items: flex-start;
-    background-color: #14171A;
-    width: 550px;
+    width: 650px;
     min-width: 450px;
     text-decoration: none;
+    background-color: black;
+    z-index: 50;
     border-bottom: 1px solid #38444D;
 }
 
@@ -160,7 +281,3 @@ body {
 .profile-follow-text {
     color: rgb(113, 118, 123);
 }
-
-
-
-
