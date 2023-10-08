@@ -25,7 +25,7 @@ class DeleteUserController extends BaseController {
 
         $posts = PostService::getInstance()->getAllByUserID($user_id);
 
-        foreach ($posts as $post) {
+        foreach ($posts[0] as $post) {
             PostService::getInstance()->deletePost($post->get('post_id'));
         }
 

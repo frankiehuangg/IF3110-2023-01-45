@@ -53,15 +53,33 @@ class PostService extends BaseService {
     public function getAllByUserID($user_id) {
         $where['user_id'] = [0, $user_id, PDO::PARAM_INT];
 
+        $user_sql = $this->user_repository->findOne([
+            'user_id'   => [$user_id, PDO::PARAM_INT]
+        ]);
+        $user = new UserModel();
+        $user->constructFromArray($user_sql);
+
         $posts_sql = $this->post_repository->findAll($where);
 
-        $posts = [];
+        $response = [];
         foreach ($posts_sql as $post_sql) {
             $post = new PostModel();
-            $posts[] = $post->constructFromArray($post_sql);
+            $post->constructFromArray($post_sql);
+
+            $resources = [];
+            $resources_sql = $this->resource_repository->findAll([
+                'post_id'   => [0, $post->get('post_id'), PDO::PARAM_INT]
+            ]);
+            foreach ($resources_sql as $resource_sql) {
+                $resource = new ResourceModel();
+                $resource->constructFromArray($resource_sql);
+                $resources[] = $resource;
+            }
+
+            $response[] = [$post, $user, $resources];
         }
 
-        return $posts;
+        return $response;
     }
 
     public function createPost($post_content, $post_resources) {

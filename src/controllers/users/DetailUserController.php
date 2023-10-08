@@ -1,8 +1,8 @@
 <?php
 
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseController.php';
-require_once PROJECT_ROOT_PATH . '/src/services/UserService.php';
-require_once PROJECT_ROOT_PATH . '/src/components/UserCard.php';
+require_once PROJECT_ROOT_PATH . '/src/services/PostService.php';
+require_once PROJECT_ROOT_PATH . '/src/components/PostCard.php';
 
 class DetailUserController extends BaseController {
     protected static $instance;
@@ -14,7 +14,7 @@ class DetailUserController extends BaseController {
     public static function getInstance() {
         if (!isset(self::$instance)) {
             self::$instance = new static(
-                UserService::getInstance()
+                PostService::getInstance()
             );
         }
 
@@ -24,11 +24,23 @@ class DetailUserController extends BaseController {
     public function get($urlParams) {
         $user_id = $urlParams[0];
 
-        $response = $this->service->getByID($user_id);
+        $responses = $this->service->getAllByUserID($user_id);
 
-        $html = UserCard($response->toResponse());
+        $response_posts = array_map(function($response) {
+            $resources = [];
+            foreach ($response[2] as $res) {
+                $resources[] = $res->toResponse();
+            }
+            return [$response[0]->toResponse(), $response[1]->toResponse(), $resources];
+        }, $responses);
 
-        $response = new BaseResponse(true, $html, 'Posts retrieved successfully', 200);
+        $html = UserCard($response_posts[0][1]);
+
+        foreach ($response_posts as $response_post) {
+            $html = $html . PostCard($response_post);
+        }
+
+        $response = new BaseResponse(true, $html, 'User data retrieved successfully', 200);
 
         return $response->toJSON();
     }
