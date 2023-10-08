@@ -29,19 +29,20 @@ require_once PROJECT_ROOT_PATH . '/src/components/Searchbar.php';
                     <h2 class="home">Home</h2>
                 </div>
                 <div class="tweet-box">
-                    <form onsubmit="submitFrom(event)">
+                    <form onsubmit="submitForm(event)">
                         <div class="tweet-box-profile-picture">
                             <img src="/public/images/default.jpg" alt="Profile Picture" class="tweet-box-profile-picture-image"></img>
                         </div>
                         <div class="tweet-box-container">
                             <div class="tweet-box-input">
-                                <input type="text" placeholder="What is happening?!">
+                                <input type="text" placeholder="What is happening?!" id="input-post-content">
                             </div>
                             <div class="tweet-box-button">
-                                <button class="attach-file-button" id="input-files">
+                                <label for="input-files" class="attach-file-button">
                                     <i class="fa-solid fa-photo-film"></i>
-                                </button>
-                                <button type="submit" class="post-tweet-button">Tweet</button>
+                                </label>
+                                <input type="file" name="file-resource" id="input-files" accept="image/*" multiple style="display: none">
+                                <button type="submit" class="post-tweet-button" id="submit-button">Tweet</button>
                             </div>
                         </div>
                     </form>
@@ -58,5 +59,6 @@ require_once PROJECT_ROOT_PATH . '/src/components/Searchbar.php';
         
         <script defer async src="/public/js/lib.js"></script>
         <script defer async src="/public/js/home.js"></script>
+        <script defer async src="/public/js/create-post.js"></script>
     </body>
 </html>
