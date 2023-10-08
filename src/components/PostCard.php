@@ -14,10 +14,15 @@ function PostCard($response_post) {
     $likes                  = $response_post[0]['likes'];
     $resources              = $response_post[2];
 
-    $resources_html = "";
+    $resources_html = "<div class=\"post-images\">";
     foreach ($resources as $resource) {
-        $resources_html = $resources_html . "<img src='$resource[resource_path]' />";
+        $resources_html = $resources_html . <<<"EOT"
+            <div class="post-image">
+                <img src='$resource[resource_path]' />
+            </div>
+        EOT;
     }
+    $resources_html = "$resources_html </div>";
 
     $html = <<<"EOT"
     <a href="/post/$post_id" class="node post-card">

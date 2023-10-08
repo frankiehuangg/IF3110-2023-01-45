@@ -19,8 +19,12 @@ class ResourceRepository extends BaseRepository {
         return self::$instance;
     }
 
-    public function getByID($resource_id) {
-        return $this->findOne(['resource_id' => [$resource_id, PDO::PARAM_INT]]);
+    public function getAllByPostID($post_id) {
+        return $this->findOne(['post_id' => [$post_id, PDO::PARAM_INT]]);
+    }
+
+    public function getByResourcePath($resource_path) {
+        return $this->findOne(['resource_path' => [$resource_path, PDO::PARAM_STR]]);
     }
 };
 

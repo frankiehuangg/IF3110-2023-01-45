@@ -36,8 +36,6 @@ class PostController extends BaseController {
             $html = $html . PostCard($response_post);
         }
 
-        echo $html;
-
         $response = new BaseResponse(true, $html, 'Posts retrieved successfully', 200);
 
         return $response->toJSON();
