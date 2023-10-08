@@ -88,14 +88,16 @@ class PostService extends BaseService {
                 $resource->set('post_id', $post_last_id);
                 $resource->set('resource_path', $post_resource);
     
-                $resource_last_id = $this->resource_repository->insert($resource, array(
+                $this->resource_repository->insert($resource, array(
                     'post_id'       => PDO::PARAM_INT,
                     'resource_path' => PDO::PARAM_STR
                 ));
-                $result_sql = $this->resource_repository->getByID($resource_last_id);
-    
+
                 $resource_model = new ResourceModel();
-                $resource_model->constructFromArray($result_sql);
+                $resource_model->constructFromArray([
+                    'post_id'       => $post_last_id,
+                    'resource_path' => $post_resource
+                ]);
                 $result_resource[] = $resource_model;
             }
         }
