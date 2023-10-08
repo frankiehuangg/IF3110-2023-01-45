@@ -40,4 +40,6 @@ async function submitForm(event) {
         console.log(':(');
         button.disabled = false;
     }
+
+    document.getElementById('input-post-content').value = '';
 }
