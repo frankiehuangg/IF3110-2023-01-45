@@ -10,7 +10,7 @@
 <body>
     <div class="background">
         <div class="centerContainer">
-            <img src="https://logos-download.com/wp-content/uploads/2016/02/Twitter_Logo_new.png" width="20%"></img>
+            <img src="https://news.topusainsights.com/wp-content/uploads/2023/07/twitter-x-logo.jpg" width="20%"></img>
             <div class="dataInputContainer">
                 <header class="dataInputHeader">
                     <h1>Reset Password</h1>
