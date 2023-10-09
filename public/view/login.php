@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/public/styles/auth/auth.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/auth/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Login</title>
 </head>
 <body>
     <div class="background">
         <div class="centerContainer">
-            <img src="https://news.topusainsights.com/wp-content/uploads/2023/07/twitter-x-logo.jpg" width="20%"></img>
+            <i class="fa-brands fa-x-twitter"></i>
             <div class="dataInputContainer">
                 <header class="dataInputHeader">
                     <h1>Login</h1>

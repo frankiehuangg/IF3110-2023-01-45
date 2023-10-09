@@ -11,6 +11,7 @@ const login = async (event) => {
 
     const lib = new Lib();
     const response = await lib.post('/api/auth/login', data);
+    console.log(response);
     const json = JSON.parse(response);
 
     if (json.success) {

@@ -15,8 +15,9 @@ body, p {
     color: white;
 }
 
-.centerContainer img {
+.centerContainer i {
     margin: 10%;
+    font-size: 10vw;
 }
 
 .dataInputContainer {

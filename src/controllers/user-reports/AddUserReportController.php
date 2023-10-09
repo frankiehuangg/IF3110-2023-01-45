@@ -3,7 +3,7 @@
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseController.php';
 require_once PROJECT_ROOT_PATH . '/src/services/UserReportService.php';
 
-class UserReportController extends BaseController {
+class AddUserReportController extends BaseController {
     protected static $instance;
 
     private function __construct($service) {

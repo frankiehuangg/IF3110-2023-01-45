@@ -21,7 +21,13 @@ require_once PROJECT_ROOT_PATH . '/src/controllers/users/UpdateUserController.ph
 require_once PROJECT_ROOT_PATH . '/src/controllers/users/DeleteUserController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/users/DetailUserController.php';
 
+require_once PROJECT_ROOT_PATH . '/src/controllers/user-reports/AddUserReportController.php';
+require_once PROJECT_ROOT_PATH . '/src/controllers/user-reports/DeleteUserReportController.php';
+require_once PROJECT_ROOT_PATH . '/src/controllers/user-reports/GetUserReportController.php';
+require_once PROJECT_ROOT_PATH . '/src/controllers/user-reports/UpdateStatusUserReportController.php';
+
 require_once PROJECT_ROOT_PATH . '/src/controllers/auth/LoginController.php';
+require_once PROJECT_ROOT_PATH . "/src/controllers/auth/LogoutController.php";
 
 require_once PROJECT_ROOT_PATH . "/src/controllers/auth/RegisterController.php";
 
@@ -45,10 +51,10 @@ $routeHandler->addHandler('/api/user/read/*', DetailUserController::getInstance(
 $routeHandler->addHandler('/api/user/update/*', UpdateUserController::getInstance(), []);
 $routeHandler->addHandler('/api/user/delete/*', DeleteUserController::getInstance(), []);
 
-// $routeHandler->addHandler('/api/user_report/create', CreateUserReportController::getInstance(), []);
-// $routeHandler->addHandler('/api/user_report/read', ReadUserReportController::getInstance(), []);
-// $routeHandler->addHandler('/api/user_report/update', UpdateUserReportController::getInstance(), []);
-// $routeHandler->addHandler('/api/user_report/delete', DeleteUserReportController::getInstance(), []);
+$routeHandler->addHandler('/api/user_report/create', AddUserReportController::getInstance(), []);
+$routeHandler->addHandler('/api/user_report/read', GetUserReportController::getInstance(), []);
+$routeHandler->addHandler('/api/user_report/update', UpdateStatusUserReportController::getInstance(), []);
+$routeHandler->addHandler('/api/user_report/delete', DeleteUserReportController::getInstance(), []);
 
 // $routeHandler->addHandler('/api/post_report/create', CreatePostReportController::getInstance(), []);
 // $routeHandler->addHandler('/api/post_report/read', ReadPostReportController::getInstance(), []);
@@ -57,6 +63,7 @@ $routeHandler->addHandler('/api/user/delete/*', DeleteUserController::getInstanc
 
 $routeHandler->addHandler('/api/auth/login', LoginController::getInstance(), []);
 $routeHandler->addHandler('/api/auth/register', RegisterController::getInstance(), []);
+$routeHandler->addHandler('/api/auth/logout', LogoutController::getInstance(), []);
 
 $routeHandler->addHandler('/api/auth/forget-password', ForgetPasswordController::getInstance(), []);
 

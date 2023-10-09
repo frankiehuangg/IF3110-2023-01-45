@@ -92,6 +92,11 @@ class AuthService extends BaseService {
 
         return $user;
     }
+
+    public function logout() {
+          unset($_SESSION['user_id']);
+          unset($_SESSION['is_admin']);
+    }
 }
 
 ?>

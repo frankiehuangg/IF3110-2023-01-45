@@ -23,13 +23,17 @@ class UserReportService extends BaseService {
         return self::$instance;
     }
 
-    public function getAll() {
-        $find_sql = $this->user_report_repository->getAll();
+    public function getPagination($page, $amount) {
+        $find_sql = $this->user_report_repository->findAll(
+            pageNo : $page,
+            pageSize : $amount
+        );
 
         $reports = [];
         foreach ($find_sql as $report_sql) {
             $report = new UserReportModel();
-            $reports[] = $report->constructFromArray($report_sql);
+            $report->constructFromArray($report_sql);
+            $reports[] = $report;
         }
 
         return $reports;

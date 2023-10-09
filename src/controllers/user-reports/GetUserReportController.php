@@ -3,7 +3,7 @@
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseController.php';
 require_once PROJECT_ROOT_PATH . '/src/services/UserReportService.php';
 
-class UserReportController extends BaseController {
+class GetUserReportController extends BaseController {
     protected static $instance;
 
     private function __construct($service) {
@@ -21,7 +21,10 @@ class UserReportController extends BaseController {
     }
     
     public function get($url_params) {
-        $res = $this->service->getAll();
+        $page = $_GET['page'];
+        $amount = 10;
+
+        $res = $this->service->getPagination($page, $amount);
 
         $response = new BaseResponse(true, $res, "Successfully retrieved reports", 200);
     

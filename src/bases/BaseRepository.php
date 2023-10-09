@@ -99,6 +99,8 @@ abstract class BaseRepository {
             $sql = $sql . ' ASC ';
         }
 
+        $sql = $sql . " LIMIT :limit OFFSET :offset";
+
         $stmt = $this->pdo->prepare($sql);
         foreach ($where as $key => $val) {
             $VALUE = htmlspecialchars($val[1]);
@@ -112,6 +114,11 @@ abstract class BaseRepository {
                 $stmt->bindValue(':' . $key, $VALUE, $TYPE);
             }
         }
+
+        $start = $pageNo * $pageSize;
+
+        $stmt->bindValue(":limit", $pageSize);
+        $stmt->bindValue(":offset", $start);
 
         $stmt->execute();
         return $stmt->fetchAll();

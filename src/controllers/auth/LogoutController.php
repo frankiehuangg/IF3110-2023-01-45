@@ -1,9 +1,9 @@
 <?php 
 
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseController.php';
-require_once PROJECT_ROOT_PATH . '/src/services/UserReportService.php';
+require_once PROJECT_ROOT_PATH . '/src/services/AuthService.php';
 
-class DeleteUserReportController extends BaseController {
+class LogoutController extends BaseController {
     protected static $instance;
 
     private function __construct($service) {
@@ -13,19 +13,17 @@ class DeleteUserReportController extends BaseController {
     public static function getInstance() {
         if (!isset(self::$instance)) {
             self::$instance = new static(
-                UserReportService::getInstance()
+                AuthService::getInstance()
             );
         }
 
         return self::$instance;
     }
 
-    public function delete($url_params) {
-        $report_id = $_GET['report_id'];
+    public function post($url_params) {
+        $this->service->logout();
 
-        $delete = $this->service->deleteReport($report_id);
-
-        $response = new BaseResponse(true, $delete, "Successfully deleted report", 200);
+        $response = new BaseResponse(true, null, "Successfully logged out", 200);
 
         return $response->toJSON();
     }
