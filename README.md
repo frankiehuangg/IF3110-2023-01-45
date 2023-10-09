@@ -70,7 +70,11 @@ Dengan itu kami membuat aplikasi berbasis web yang mengimitasi _twitter_ dengan 
 * setelah selesai lakukan `docker compose up`
 * jika sudah selesai, lakukan _ctrl + c_ dan `docker compose down`
 
-## Screebshots
+## Screenshots
+
+![post](https://github.com/frankiehuangg/IF3110-2023-01-45/assets/86491005/6f73b424-85f6-42b8-a51b-291977cb9390)
+![search](https://github.com/frankiehuangg/IF3110-2023-01-45/assets/86491005/68cdcabc-4da2-47bd-95e6-eefc7a245b8e)
+
 
 ## Pembagian Tugas
 | Nama                      | NIM        | Tugas                                          |
