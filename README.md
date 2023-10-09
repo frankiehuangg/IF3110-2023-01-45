@@ -77,4 +77,4 @@ Dengan itu kami membuat aplikasi berbasis web yang mengimitasi _twitter_ dengan 
 |---------------------------|------------|------------------------------------------------|
 | Hosea Nathanael Abednego  | 13521057   | Login, Register, Forget Password, User Reports |   
 | Christian Albert Hasiholan| 13521078   |                              |  
-| Frankie Huang             | 13521092   |                               | 
+| Frankie Huang             | 13521092   | Router, PageCard, Home, BaseClass, API, Searching, Debounce | 
