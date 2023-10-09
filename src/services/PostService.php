@@ -150,7 +150,7 @@ class PostService extends BaseService {
     }
 
     public function getNLastPosts($n) {
-        $posts_sql = $this->post_repository->getNLastRow($n);
+        $posts_sql = $this->post_repository->getNLastRow($n, "post_id");
 
         $posts = [];
 

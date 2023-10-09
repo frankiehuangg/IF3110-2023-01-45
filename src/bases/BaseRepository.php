@@ -224,7 +224,7 @@ abstract class BaseRepository {
         return $stmt->rowCount();
     }
 
-    public function getNLastRow($n, $where=[]) {
+    public function getNLastRow($n, $order_by, $where=[]) {
         $sql = "SELECT COUNT(*) FROM $this->tableName";
 
         $WHERE_CASE_EXIST = (count($where) > 0);
@@ -281,7 +281,7 @@ abstract class BaseRepository {
             }, array_keys($where), array_values($where)));
         }
 
-        $sql = $sql .  " LIMIT :limit OFFSET :offset";
+        $sql = $sql .  " ORDER BY $order_by DESC LIMIT :limit OFFSET :offset ";
 
         $stmt = $this->pdo->prepare($sql);
 

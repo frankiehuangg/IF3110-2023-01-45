@@ -1,0 +1,52 @@
+.dataInputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 8px solid #38444D;
+    min-width: 500px;
+}
+
+.dataInputHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15%;
+    font-size: 100%;
+}
+
+.Form {
+    display: flex;
+    flex-direction: column;
+    min-width: 10vw;
+    gap: 2.5vh;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    min-width: 100px;
+
+}
+
+.inputGroup input {
+    border: 1px solid #38444D;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    height: 2.5vh;
+    outline: none;
+}
+
+.submitButton {
+    background-color: rgb(29, 155, 240);
+    border-radius: 10px;
+    padding: 3%;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}

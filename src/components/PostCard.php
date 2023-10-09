@@ -17,11 +17,27 @@ function PostCard($response_post) {
 
     $resources_html = "<div class=\"post-images\">";
     foreach ($resources as $resource) {
-        $resources_html = $resources_html . <<<"EOT"
-            <div class="post-image">
-                <img src='$resource[resource_path]' />
-            </div>
-        EOT;
+        $extension = explode(".", $resource['resource_path'])[1];
+        
+        $image = array("png", "jpg", "jpeg");
+        $video = array("mp4");
+
+        if (in_array($extension, $image)) {
+            $resources_html = $resources_html . <<<"EOT"
+                <div class="post-image">
+                    <img src="$resource[resource_path]" width="100%" height="100%" />
+                </div>
+            EOT;
+        } else if (in_array($extension, $video)) {
+            $resources_html = $resources_html . <<<"EOT"
+                <div class="post-image">
+                    <video width="400" controls>
+                        <source src="$resource[resource_path]" type="video/$extension" />
+                    </video>
+                </div>
+            EOT;
+        }
+
     }
     $resources_html = "$resources_html </div>";
 

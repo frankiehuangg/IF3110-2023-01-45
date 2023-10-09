@@ -56,4 +56,3 @@ function UserCard($response_post) {
 }
 
 ?>
-
