@@ -53,7 +53,7 @@ function Sidebar() {
                 <a href="#" class="sidebar-footer-navigation">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </a>
-                <form class="Form" onsubmit="logout(event)">
+                <form onsubmit="logout(event)">
                     <button type="submit" id="logout-user" class="sidebar-footer-element">Log Out</button>
                 </form>
             </div>

@@ -67,21 +67,19 @@ function PostCard($response_post) {
                             </div>
                         </div>
                         <div class="node bottom_content_node_element">
-                            <div class="tweet-box-button">
-                            <label for="input-files" class="attach-file-button">
-                                <i class="fa-solid fa-photo-film"></i>
-                            </label>
-                            <input type="file" name="file-resource" id="input-files" accept="image/*" multiple style="display: none">
-                            <button type="submit" class="post-tweet-button" id="submit-button">Tweet</button>
-                            </div>                  
+                            <div class="bottom_content_node_icon">
+                                <i class="bi bi-repeat"></i>
+                            </div>
+                            <div class="bottom_content_node_text">
+                                $shares
+                            </div>                        
                         </div>
                         <div class="node bottom_content_node_element">
-                            <div class="tweet-box-button">
-                            <label for="input-files" class="attach-file-button">
-                                <i class="fa-solid fa-photo-film"></i>
-                            </label>
-                            <input type="file" name="file-resource" id="input-files" accept="image/*" multiple style="display: none">
-                            <button type="submit" class="post-tweet-button" id="submit-button">Tweet</button>
+                            <div class="bottom_content_node_icon">
+                                <i class="bi bi-heart"></i>
+                            </div>
+                            <div class="bottom_content_node_text">
+                                $likes
                             </div>
                         </div>
                     </div>

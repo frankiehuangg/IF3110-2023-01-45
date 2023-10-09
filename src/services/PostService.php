@@ -31,13 +31,13 @@ class PostService extends BaseService {
     }
 
     public function getAll(
-        $post_content, 
+        $where, 
         $order_by = '', 
         $sort_res = 0, 
         $page_no = null, 
         $page_size = null
     ) {
-        $where['post_content'] = [1, $post_content, PDO::PARAM_STR];
+        $where['post_content'] = [1, $where, PDO::PARAM_STR];
 
         $posts_sql = $this->post_repository->findAll($where, $order_by, $sort_res, $page_no, $page_size);
 
@@ -48,6 +48,38 @@ class PostService extends BaseService {
         }
 
         return $posts;
+    }
+
+    public function getAllByPostContent($post_content) {
+        $where = [
+            'post_content' => [1, $post_content, PDO::PARAM_STR]
+        ];
+
+        $posts_sql = $this->post_repository->findAll($where);
+        
+        $response = [];
+        foreach ($posts_sql as $post_sql) {
+            $post = new PostModel();
+            $post->constructFromArray($post_sql);
+
+            $user_sql = $this->user_repository->getByID($post->get('user_id'));
+            $user = new UserModel();
+            $user->constructFromArray($user_sql);
+
+            $resources = [];
+            $resources_sql = $this->resource_repository->findAll([
+                'post_id'   => [0, $post->get('post_id'), PDO::PARAM_INT]
+            ]);
+            foreach ($resources_sql as $resource_sql) {
+                $resource = new ResourceModel();
+                $resource->constructFromArray($resource_sql);
+                $resources[] = $resource;
+            }
+
+            $response[] = [$post, $user, $resources];
+        }
+
+        return $response;
     }
 
     public function getAllByUserID($user_id) {

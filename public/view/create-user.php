@@ -13,7 +13,6 @@ require_once PROJECT_ROOT_PATH . '/src/components/Searchbar.php';
         <meta name="viewport" content="width=device-width, initial=scale=1.0">
         <link rel="stylesheet" href="/public/css/global.css">
         <link rel="stylesheet" href="/public/css/shared.css">
-        <link rel="stylesheet" href="/public/css/home.css">
         <link rel="stylesheet" href="/public/css/sidebar.css">
         <link rel="stylesheet" href="/public/css/searchbar.css">
         <link rel="stylesheet" href="/public/css/createuser.css">
@@ -56,5 +55,6 @@ require_once PROJECT_ROOT_PATH . '/src/components/Searchbar.php';
         <script defer async src="/public/js/lib.js"></script>
         <script defer async src="/public/js/home.js"></script>
         <script defer async src="/public/js/create-post.js"></script>
+        <script defer async src="/public/js/register.js"></script>
     </body>
 </html>
