@@ -89,6 +89,7 @@ class AuthService extends BaseService {
 
         $_SESSION['user_id'] = $user->user_id;
         $_SESSION['is_admin'] = $user->is_admin;
+        $_SESSION['username'] = $user->username;
 
         return $user;
     }
@@ -96,6 +97,7 @@ class AuthService extends BaseService {
     public function logout() {
           unset($_SESSION['user_id']);
           unset($_SESSION['is_admin']);
+          unset($_SESSION['username']);
     }
 }
 

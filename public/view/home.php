@@ -62,5 +62,6 @@ require_once PROJECT_ROOT_PATH . '/src/components/Searchbar.php';
         <script defer async src="/public/js/home.js"></script>
         <script defer async src="/public/js/create-post.js"></script>
         <script defer async src="/public/js/logout.js"></script>
+        <script defer async src="/public/js/like-post.js"></script>
     </body>
 </html>

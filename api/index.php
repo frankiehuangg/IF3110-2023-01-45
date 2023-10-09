@@ -16,6 +16,7 @@ require_once PROJECT_ROOT_PATH . '/src/controllers/posts/DetailPostController.ph
 require_once PROJECT_ROOT_PATH . '/src/controllers/posts/RetrievePostController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/posts/SearchPostController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/posts/UpdatePostController.php';
+require_once PROJECT_ROOT_PATH . '/src/controllers/posts/LikePostController.php';
 
 require_once PROJECT_ROOT_PATH . '/src/controllers/users/RetrieveUserController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/users/UpdateUserController.php';
@@ -47,6 +48,7 @@ $routeHandler->addHandler('/api/post/search', SearchPostController::getInstance(
 $routeHandler->addHandler('/api/post/read/*', DetailPostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/update/*', UpdatePostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/delete/*', DeletePostController::getInstance(), []);
+$routeHandler->addHandler('/api/post/like', LikePostController::getInstance(), []);
 
 $routeHandler->addHandler('/api/user/read', RetrieveUserController::getInstance(), [CheckAdmin::getInstance()]);
 $routeHandler->addHandler('/api/user/read/*', DetailUserController::getInstance(), []);

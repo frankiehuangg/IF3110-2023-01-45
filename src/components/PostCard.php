@@ -75,9 +75,13 @@ function PostCard($response_post) {
                             </div>                        
                         </div>
                         <div class="node bottom_content_node_element">
-                            <div class="bottom_content_node_icon">
-                                <i class="bi bi-heart"></i>
-                            </div>
+                            <input type="checkbox" id="like-checkbox-$post_id" class="like-checkbox"
+                            onchange=like(event,'{$_SESSION['username']}',$post_id)></input>
+                            <label for="like-checkbox-$post_id">
+                                <div class="bottom_content_node_icon">
+                                    <i class="bi bi-heart"></i>
+                                </div>
+                            </label>
                             <div class="bottom_content_node_text">
                                 $likes
                             </div>
