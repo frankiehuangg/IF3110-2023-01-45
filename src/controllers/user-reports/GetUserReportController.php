@@ -2,6 +2,7 @@
 
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseController.php';
 require_once PROJECT_ROOT_PATH . '/src/services/UserReportService.php';
+require_once PROJECT_ROOT_PATH . '/src/components/user-report-card.php';
 
 class GetUserReportController extends BaseController {
     protected static $instance;
@@ -26,7 +27,12 @@ class GetUserReportController extends BaseController {
 
         $res = $this->service->getPagination($page, $amount);
 
-        $response = new BaseResponse(true, $res, "Successfully retrieved reports", 200);
+        $html = "";
+        foreach ($res as $model) {
+            $html = $html . userReports($model);
+        }
+
+        $response = new BaseResponse(true, $html, "Successfully retrieved reports", 200);
     
         return $response->toJSON();
     }

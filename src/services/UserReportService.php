@@ -25,6 +25,8 @@ class UserReportService extends BaseService {
 
     public function getPagination($page, $amount) {
         $find_sql = $this->user_report_repository->findAll(
+            orderBy : 'report_id',
+            sortRes : 2,
             pageNo : $page,
             pageSize : $amount
         );
@@ -59,7 +61,7 @@ class UserReportService extends BaseService {
     }
 
     public function updateStatus($report_id, $status) {
-        $report = $this->user_report_repository->findReportById($report_id);
+        $report = $this->user_report_repository->getReportById($report_id);
 
         if (!isset($report)) {
             throw new BadRequestException('Report not found');

@@ -22,7 +22,7 @@ class UserReportRepository extends BaseRepository {
         return $this->findAll();
     }
 
-    public function getReportId($report_id) {
+    public function getReportById($report_id) {
         return $this->findOne(['report_id' => [$report_id, PDO::PARAM_INT]]);
     }
 

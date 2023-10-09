@@ -86,6 +86,51 @@ INSERT INTO posts VALUES
     (3, 2, 'amongus', NOW(), 0, 1, 1);
 
 INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
+INSERT INTO user_reports (user_id, reporter, description) VALUES (1, 2, 'test');
 
 -- TRIGGER
 

@@ -9,8 +9,7 @@ $routes = array(
     '/tweet'        => PROJECT_ROOT_PATH . '/public/view/create-post.php',
     '/post/*'       => PROJECT_ROOT_PATH . '/public/view/post-detail.php',
     '/user/*'       => PROJECT_ROOT_PATH . '/public/view/user-detail.php',
-    '/post-reports' => PROJECT_ROOT_PATH . '/public/view/post-reports.php',
-    '/user-reports' => PROJECT_ROOT_PATH . '/public/view/user-reports.php',
+    '/report-list/*'=> PROJECT_ROOT_PATH . '/public/view/reports.php',
     '/explore'      => PROJECT_ROOT_PATH . '/public/view/explore.php',
     '/create-user'  => PROJECT_ROOT_PATH . '/public/view/create-user.php',
 );

@@ -42,7 +42,7 @@ function Sidebar() {
                         Register User
                     </div>
                 </a>
-                <a href="/report-list" class="sidebar-navigation">
+                <a href="/report-list/0" class="sidebar-navigation">
                     <i class="fa-regular fa-flag"></i>
                     <div class="sidebar-navigation-text">
                         Reports List
