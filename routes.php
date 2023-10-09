@@ -12,4 +12,5 @@ $routes = array(
     '/post-reports' => PROJECT_ROOT_PATH . '/public/view/post-reports.php',
     '/user-reports' => PROJECT_ROOT_PATH . '/public/view/user-reports.php',
     '/explore'      => PROJECT_ROOT_PATH . '/public/view/explore.php',
+    '/create-user'  => PROJECT_ROOT_PATH . '/public/view/create-user.php',
 );

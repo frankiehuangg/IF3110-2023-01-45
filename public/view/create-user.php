@@ -16,9 +16,10 @@ require_once PROJECT_ROOT_PATH . '/src/components/Searchbar.php';
         <link rel="stylesheet" href="/public/css/home.css">
         <link rel="stylesheet" href="/public/css/sidebar.css">
         <link rel="stylesheet" href="/public/css/searchbar.css">
+        <link rel="stylesheet" href="/public/css/createuser.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <title>Home</title>
+        <title>Register</title>
     </head>
     <body>
         <div class="page d-flex">
@@ -27,30 +28,24 @@ require_once PROJECT_ROOT_PATH . '/src/components/Searchbar.php';
             </div>
             <div class="main">
                 <div class="main-header">
-                    <h2 class="main-header-title">Home</h2>
+                    <h2 class="main-header-title">Register</h2>
                 </div>
-                <div class="tweet-box">
-                    <form onsubmit="submitForm(event)">
-                        <div class="tweet-box-profile-picture">
-                            <img src="/public/images/default.jpg" alt="Profile Picture" class="tweet-box-profile-picture-image"></img>
+                <div class="dataInputContainer">
+                    <form class="Form" onsubmit="register(event)">
+                        <div class="inputGroup">
+                            <input type="text" name="username" id="username" placeholder="Username">
                         </div>
-                        <div class="tweet-box-container">
-                            <div class="tweet-box-input">
-                                <input type="text" placeholder="What is happening?!" id="input-post-content">
-                            </div>
-                            <div class="tweet-box-button">
-                                <label for="input-files" class="attach-file-button">
-                                    <i class="fa-solid fa-photo-film"></i>
-                                </label>
-                                <input type="file" name="file-resource" id="input-files" accept="image/*,video/*" multiple style="display: none">
-                                <button type="submit" class="post-tweet-button" id="submit-button">Tweet</button>
-                            </div>
+                        <div class="inputGroup">
+                            <input type="email" name="email" id="email" placeholder="Email">
                         </div>
+                        <div class="inputGroup">
+                            <input type="password" name="password" id="password" placeholder="Password">
+                        </div>
+                        <div class="inputGroup">
+                            <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password">
+                        </div>
+                        <button type="submit" class="submitButton">Register</button>
                     </form>
-                </div>
-                <div id="content">
-                    <div class="post-list d-flex flex-wrap" id="post-list">
-                    </div>
                 </div>
             </div>
             <div class="right-sidebar">
@@ -61,6 +56,5 @@ require_once PROJECT_ROOT_PATH . '/src/components/Searchbar.php';
         <script defer async src="/public/js/lib.js"></script>
         <script defer async src="/public/js/home.js"></script>
         <script defer async src="/public/js/create-post.js"></script>
-        <script defer async src="/public/js/logout.js"></script>
     </body>
 </html>
