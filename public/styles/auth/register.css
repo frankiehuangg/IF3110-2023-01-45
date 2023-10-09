@@ -1,0 +1,36 @@
+.inputGroup .subtext {
+    text-align: center;
+    font-size: small;
+}
+
+@media (max-width: 768px) {
+    .centerContainer {
+        flex-direction: column;
+    }
+    
+    .dataInputContainer {
+        height: 50vh;
+        width: 55vw;
+    }
+
+    .inputGroup {
+        width: 50vw;
+        margin: 3%;
+    }
+
+    .From {
+        gap: 1vh;
+    }
+
+    .submitButton {
+        margin-top: 5%;
+    }
+
+    .dataInputHeader {
+        margin-bottom: 0;
+    }
+
+    .loginform {
+        gap: 1vh;
+    }
+}

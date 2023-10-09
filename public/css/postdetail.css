@@ -1,0 +1,98 @@
+.post-card {
+    display: flex;
+    align-items: flex-start;
+    width: 650px;
+    min-width: 450px;
+    text-decoration: none;
+    background-color: black;
+    z-index: 50;
+    border-bottom: 1px solid #38444D;
+}
+
+.post-card-2 {
+    width: 650px;
+    text-decoration: none;
+}
+
+.main_content_node {
+    width: 100%;
+    display: flex;
+}
+
+.profile_picture_node {
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    height: 100%;
+    vertical-align: top;
+}
+
+.profile_picture_img_node {
+    width: 35px;
+    height: 35px;
+    margin: 17px auto;
+    display: block;
+    border-radius: 50%;
+}
+
+.content_node {
+    width: 85%;
+    padding: 0 10px;
+    text-decoration: none;
+}
+
+.top_content_node {
+    width: 100%;
+    padding-top: 10px;
+    display: flex;
+}
+
+.top_content_node_display_name {
+    text-decoration: none;
+    color: #E7E9EA;
+    font: bolder;
+}
+
+.top_content_node_username {
+    padding:0 5px;
+    text-decoration: none;
+    font: lighter;
+    color: #71767B;
+}
+
+.top_content_node_post_timestamp {
+    text-decoration: none;
+    color: #71767B;
+}
+
+.middle_content_node {
+    width: 100%;
+    text-decoration: none;
+    color: white;
+}
+
+.bottom_content_node {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom_content_node_element {
+    width: 25%;
+    text-decoration: none;
+    display: flex;
+    color: rgb(113, 118, 123);
+}
+
+.bottom_content_node_icon {
+    margin-right: 10px;
+}
+
+.bottom_content_node_text {
+    font-size: 14px;
+}
+
+.like-checkbox {
+    appearance: none;
+}

@@ -1,0 +1,171 @@
+.tweet-box {
+    padding-bottom: 10px;
+    border-bottom: 8px solid #38444D;
+}
+
+.tweet-box form {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.tweet-box-profile-picture {
+    height: 100%;
+    margin-right: 15px;
+}
+
+.tweet-box-profile-picture-image {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+}
+
+.tweet-box-container {
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tweet-box-input {
+    display: flex;
+    padding: 8px 0 12px 0;
+}
+
+.tweet-box-input input {
+    flex: 1;
+    font-size: 20px;
+    background-color: inherit;
+    border: none;
+    outline: none;
+}
+
+.tweet-box-button {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.attach-file-button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(29, 155, 240);
+    border-radius: 30px;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.post-tweet-button {
+    background-color: rgb(29, 155, 240); /* Green */
+    border: none;
+    border-radius: 30px;
+    margin-top: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.post-card {
+    display: flex;
+    align-items: flex-start;
+    width: 650px;
+    min-width: 450px;
+    text-decoration: none;
+    background-color: black;
+    z-index: 50;
+    border-bottom: 1px solid #38444D;
+}
+
+.post-card-2 {
+    width: 650px;
+    text-decoration: none;
+}
+
+.main_content_node {
+    width: 100%;
+    display: flex;
+}
+
+.profile_picture_node {
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    height: 100%;
+    vertical-align: top;
+}
+
+.profile_picture_img_node {
+    width: 35px;
+    height: 35px;
+    margin: 17px auto;
+    display: block;
+    border-radius: 50%;
+}
+
+.content_node {
+    width: 85%;
+    padding: 0 10px;
+    text-decoration: none;
+}
+
+.top_content_node {
+    width: 100%;
+    padding-top: 10px;
+    display: flex;
+}
+
+.top_content_node_display_name {
+    text-decoration: none;
+    color: #E7E9EA;
+    font: bolder;
+}
+
+.top_content_node_username {
+    padding:0 5px;
+    text-decoration: none;
+    font: lighter;
+    color: #71767B;
+}
+
+.top_content_node_post_timestamp {
+    text-decoration: none;
+    color: #71767B;
+}
+
+.middle_content_node {
+    width: 100%;
+    text-decoration: none;
+    color: white;
+}
+
+.bottom_content_node {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom_content_node_element {
+    width: 25%;
+    text-decoration: none;
+    display: flex;
+    color: rgb(113, 118, 123);
+}
+
+.bottom_content_node_icon {
+    margin-right: 10px;
+}
+
+.bottom_content_node_text {
+    font-size: 14px;
+}
+
+.like-checkbox {
+    appearance: none;
+}
+
+

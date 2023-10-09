@@ -1,0 +1,19 @@
+.inputGroup .register {
+    text-align: center;
+    font-size: small;
+}
+
+@media (max-width: 768px) {
+    .centerContainer {
+        flex-direction: column;
+    }
+    
+    .dataInputContainer {
+        height: 50vh;
+        width: 55vw;
+    }
+
+    .inputGroup {
+        width: 50vw;
+    }
+}

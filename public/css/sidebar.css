@@ -1,0 +1,117 @@
+.sidebar {
+    position: fixed;
+    overflow: hidden;
+    height: 100%;
+    min-height: 500px;
+    margin-left: 10%;
+    width: 20%;
+}
+
+@media screen and (max-width:780px) {
+    .sidebar {
+        margin-left: 15px;
+        transition: margin-left 1s ease-in-out;
+    }
+}
+
+@media screen and (min-width:780px) {
+    .sidebar {
+        margin-left: 10%;
+        transition: margin-left 1s ease-in-out;
+    }
+}
+
+.sidebar-header {
+    margin-left: 5px;
+    margin-top: 10px;
+    color: white;
+    align-items: center;
+    font-size: 30px;
+    padding: 0 5px;
+    width: fit-content;
+}
+
+.sidebar-header:hover {
+    background-color: #ffffff55;
+    border-radius: 100px;
+}
+
+.sidebar-navigation-container {
+    margin: 2px 0 4px 0;
+    width: 100%;
+    align-items: self-start;
+}
+
+.sidebar-navigation {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: fit-content;
+    color: aliceblue;
+    justify-content: center;
+    flex-direction: row;
+    padding: 15px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.sidebar-navigation-text {
+    font-weight: 300;
+    margin-left: 16px;
+    margin-right: 20px;
+}
+
+.sidebar-navigation:hover {
+    background-color: rgba(123, 130, 134, 0.545);
+    padding: 15px;
+    border-radius: 30px;
+}
+
+@media screen and (max-width:900px) {
+    .sidebar-navigation-text {
+        display: none;
+    }
+}
+
+@media screen and (min-width:900px) {
+    .sidebar-navigation-text {
+        display: inline;
+        transition: display 1s ease-in-out;
+    }
+}
+
+.sidebar-footer-navigation {
+    display: none;
+    align-items: center;
+    cursor: pointer;
+    width: fit-content;
+    color: aliceblue;
+    justify-content: center;
+    flex-direction: row;
+    padding: 15px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.sidebar-footer-element {
+    border: 1px solid #fff;
+    color: #fff;
+    background-color: transparent;
+    border-radius: 30px;
+    margin-top: 10px;
+    padding: 15px 60px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+@media screen and (max-width:910px) {
+    .sidebar-footer-element {
+        display: none;
+    }
+    .sidebar-footer-navigation {
+        display: flex;
+    }
+}
