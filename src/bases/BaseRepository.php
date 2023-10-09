@@ -99,7 +99,9 @@ abstract class BaseRepository {
             $sql = $sql . ' ASC ';
         }
 
-        $sql = $sql . " LIMIT :limit OFFSET :offset";
+        if (isset($pageNo) && isset($pageSize)) {
+            $sql = $sql . " LIMIT :limit OFFSET :offset";        $stmt = $this->pdo->prepare($sql);
+        }
 
         $stmt = $this->pdo->prepare($sql);
         foreach ($where as $key => $val) {
@@ -108,17 +110,19 @@ abstract class BaseRepository {
 
             $LIKE_CASE_EXIST = ($val[0] === 1);
             if ($LIKE_CASE_EXIST) {
-                $VALUE = "%$VALUE$";
+                $VALUE = "%$VALUE%";
                 $stmt->bindValue(':' . $key, $VALUE, $TYPE);
             } else {
                 $stmt->bindValue(':' . $key, $VALUE, $TYPE);
             }
         }
 
-        $start = $pageNo * $pageSize;
-
-        $stmt->bindValue(":limit", $pageSize);
-        $stmt->bindValue(":offset", $start);
+        if (isset($pageNo) && isset($pageSize)) {
+            $start = $pageNo * $pageSize;
+            
+            $stmt->bindValue(":limit", $pageSize);
+            $stmt->bindValue(":offset", $start);      $stmt = $this->pdo->prepare($sql);
+        }
 
         $stmt->execute();
         return $stmt->fetchAll();
