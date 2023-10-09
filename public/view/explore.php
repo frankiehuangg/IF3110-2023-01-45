@@ -13,6 +13,7 @@ require_once PROJECT_ROOT_PATH . '/src/components/Sidebar.php';
         <link rel="stylesheet" href="/public/css/global.css">
         <link rel="stylesheet" href="/public/css/sidebar.css">
         <link rel="stylesheet" href="/public/css/searchbar.css">
+        <link rel="stylesheet" href="/public/css/postdetail.css">
         <link rel="stylesheet" href="/public/css/shared.css">
         <link rel="stylesheet" href="/public/css/explore.css">
         
@@ -34,12 +35,12 @@ require_once PROJECT_ROOT_PATH . '/src/components/Sidebar.php';
                 <div class="search-bar">
                     <form action="#">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Search" class="search-bar-input">
+                        <input type="text" placeholder="Search" class="search-bar-input" id="search-bar-input" onkeyup="searchChange()">
                     </form>
                 </div>
                 </div>
                 <div id="content">
-                    <div class="user-list d-flex flex-wrap" id="user-list">
+                    <div class="post-list d-flex flex-wrap" id="post-list">
                     </div>
                 </div>
             </div>
@@ -47,6 +48,6 @@ require_once PROJECT_ROOT_PATH . '/src/components/Sidebar.php';
             </div>
         </div>  
         <script defer async src="/public/js/lib.js"></script>
-        <script defer async src="/public/js/user-detail.js"></script>
-    </body>
+        <script defer async src="/public/js/explore.js"></script>
+        </body>
 </html>

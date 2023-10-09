@@ -14,6 +14,7 @@ require_once PROJECT_ROOT_PATH . '/src/controllers/posts/CreatePostController.ph
 require_once PROJECT_ROOT_PATH . '/src/controllers/posts/DeletePostController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/posts/DetailPostController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/posts/RetrievePostController.php';
+require_once PROJECT_ROOT_PATH . '/src/controllers/posts/SearchPostController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/posts/UpdatePostController.php';
 
 require_once PROJECT_ROOT_PATH . '/src/controllers/users/RetrieveUserController.php';
@@ -42,6 +43,7 @@ $routeHandler->addHandler('/api', CheckHealthController::getInstance(), []);
 // $routeHandler->addHandler('/api/post', PostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/create', CreatePostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/read', RetrievePostController::getInstance(), []);
+$routeHandler->addHandler('/api/post/search', SearchPostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/read/*', DetailPostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/update/*', UpdatePostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/delete/*', DeletePostController::getInstance(), []);
