@@ -30,12 +30,6 @@ function Sidebar() {
                         Profile
                     </div>
                 </a>
-                <a href="/create-user" class="sidebar-navigation">
-                    <i class="fa-solid fa-user-plus"></i>
-                    <div class="sidebar-navigation-text">
-                        Register User
-                    </div>
-                </a>
                 <a href="/report-list/0" class="sidebar-navigation">
                     <i class="fa-regular fa-flag"></i>
                     <div class="sidebar-navigation-text">
