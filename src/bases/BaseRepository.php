@@ -100,7 +100,7 @@ abstract class BaseRepository {
         }
 
         if (isset($pageNo) && isset($pageSize)) {
-            $sql = $sql . " LIMIT :limit OFFSET :offset";        $stmt = $this->pdo->prepare($sql);
+            $sql = $sql . " LIMIT :limit OFFSET :offset";
         }
 
         $stmt = $this->pdo->prepare($sql);
@@ -121,7 +121,7 @@ abstract class BaseRepository {
             $start = $pageNo * $pageSize;
             
             $stmt->bindValue(":limit", $pageSize);
-            $stmt->bindValue(":offset", $start);      $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(":offset", $start);
         }
 
         $stmt->execute();
