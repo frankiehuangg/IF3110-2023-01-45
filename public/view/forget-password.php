@@ -28,7 +28,7 @@
                     </div>
                     <button type="submit" class="submitButton">Reset</button>
                     <div class="inputGroup">
-                        <p class="subtext"><a href="http://localhost:8008/login">Login</a></p>
+                        <p class="subtext"><a href="/login">Login</a></p>
                     </div>
                 </form>
             </div>

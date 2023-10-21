@@ -17,7 +17,7 @@ const resetPassword = async (event) => {
 
     if (json.success) {
         console.log("Successfully reset password");
-        window.location.assign('http://localhost:8008/login');
+        window.location.assign('/login');
     } else {
         console.log("reset password failed");
         alert(json.message);

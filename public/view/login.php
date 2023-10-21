@@ -22,11 +22,11 @@
                     </div>
                     <div class="inputGroup">
                         <input type="password" name="password" id="password" placeholder="Password">
-                        <p class="subtext"><a href="http://localhost:8008/forget-pass">Forgot Password?</a></p>
+                        <p class="subtext"><a href="/forget-pass">Forgot Password?</a></p>
                     </div>
                     <button type="submit" class="submitButton">Login</button>
                     <div class="inputGroup">
-                        <p class="register">Don't have an account? <a href="http://localhost:8008/register">Register</a></p>
+                        <p class="register">Don't have an account? <a href="/register">Register</a></p>
                     </div>
                 </form>
             </div>

@@ -19,7 +19,7 @@ const register = async (event) => {
 
     if (json.success) {
         console.log("Successfully registered and logged in");
-        window.location.assign('http://localhost:8008/');
+        window.location.assign('/');
     } else {
         console.log("register failed");
         alert(json.message);

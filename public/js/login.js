@@ -16,7 +16,7 @@ const login = async (event) => {
 
     if (json.success) {
         console.log("Successfully logged in");
-        window.location.assign('http://localhost:8008/');
+        window.location.assign('/');
     } else {
         console.log("login failed");
         alert(json.message);

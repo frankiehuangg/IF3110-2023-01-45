@@ -6,11 +6,10 @@ function Searchbar() {
         <div class="search-bar">
             <form action="#">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Search" class="search-bar-input">
+                <input type="text" placeholder="Search" class="search-bar-input" id="search-bar-input" onkeyup="searchChange()">
             </form>
         </div>
     </div>
-    <div class="right-sidebar-container"></div>
     EOT;
 
     return $html;
