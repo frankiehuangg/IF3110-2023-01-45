@@ -21,6 +21,14 @@ class LoginController extends BaseController {
     }
 
     public function post($url_params) {
+        if (!isset($_POST['username'])) {
+            throw new BadRequestException('Username not set!');
+        }
+
+        if (!isset($_POST['password'])) {
+            throw new BadRequestException('Password not set!');
+        }
+
         $username = $_POST['username'];
         $password = $_POST['password'];
 
