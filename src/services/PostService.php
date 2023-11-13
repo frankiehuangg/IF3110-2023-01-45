@@ -155,6 +155,17 @@ class PostService extends BaseService {
         return [$result_post, $result_resource];
     }
 
+    public function getById($id) {
+        $post = new PostModel();
+
+        $post_sql = $this->post_repository->getById($id);
+        if ($post_sql) {
+            $post->constructFromArray($post_sql);
+        }
+
+        return $post;
+    }
+
     public function getPostByID($post_id) {
         $post_sql = $this->post_repository->getByID($post_id);
 
@@ -215,15 +226,25 @@ class PostService extends BaseService {
         return $posts;
     }
 
-    public function updatePost($post_id, $post_content) {
-        $post = $this->getPostByID($post_id)[0];
-        $post->set('post_content', $post_content);
+    public function updatePost(
+        $post_id, 
+        $post_content = NULL,
+        $likes = NULL,
+        $replies = NULL,
+        $retweets = NULL
+    ) {
+        $post = $this->getById($post_id);
 
-        $this->post_repository->update($post, array(
-            'post_content'  => PDO::PARAM_STR
-        ));
+        $params = [];
 
-        $post = $this->getPostByID($post_id);
+        if (isset($post_content))   { $post->set('post_content', $post_content);    $params['post_content'] = PDO::PARAM_STR; }
+        if (isset($likes))          { $post->set('likes', $likes);                  $params['likes'] = PDO::PARAM_INT; }
+        if (isset($replies))        { $post->set('replies', $replies);              $params['replies'] = PDO::PARAM_INT; }
+        if (isset($retweets))       { $post->set('retweets', $retweets);            $params['retweets'] = PDO::PARAM_INT; }
+
+        $this->post_repository->update($post, $params);
+
+        $post = $this->getById($post_id);
 
         return $post;
     }
