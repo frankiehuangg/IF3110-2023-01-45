@@ -3,7 +3,7 @@
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseController.php';
 require_once PROJECT_ROOT_PATH . '/src/services/PostService.php';
 
-class UpdatePostController extends BaseController {
+class GetPostController extends BaseController {
     protected static $instance;
 
     private function __construct($service) {
@@ -20,21 +20,19 @@ class UpdatePostController extends BaseController {
         return self::$instance;
     }
 
-    public function patch($urlParams) {
+    public function get($urlParams) {
         $post_id = $urlParams[0];
-        parse_str(file_get_contents('php://input'), $_PATCH);
 
-        $post_content = $_PATCH['post_content'] ?? null;
-        $likes = $_PATCH['likes'] ?? null;
-        $replies = $_PATCH['replies'] ?? null;
-        $retweets = $_PATCH['retweets'] ?? null;
+        if (!isset($post_id)) {
+            throw new BadRequestException('Post ID not set!');
+        }
 
-        $post = $this->service->updatePost($post_id, $post_content, $likes, $replies, $retweets);
+        $post = $this->service->getById($post_id);
 
-        $response = new BaseResponse(true, $post, 'Post updated successfully', 200);
-
+        $response = new BaseResponse(true, $post, 'User data retrieved successfully', 200);
+        
         return $response->toJSON();
     }
-};
+}
 
 ?>
