@@ -9,7 +9,6 @@ async function like(event, userID, postID) {
     };
 
     const res = await lib.post('/api/post/like', payload);
-    console.log(res);
     const json = JSON.parse(res);
 
     if (json.success) {

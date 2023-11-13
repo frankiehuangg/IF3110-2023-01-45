@@ -10,7 +10,6 @@ window.onload = async function getPosts(event) {
     };
 
     const res = await lib.get('/api/post/read', payload);
-    console.log(res);
     const json = JSON.parse(res);
 
     if (json.success) {
