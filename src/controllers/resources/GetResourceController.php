@@ -1,9 +1,9 @@
 <?php
 
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseController.php';
-require_once PROJECT_ROOT_PATH . '/src/services/PostService.php';
+require_once PROJECT_ROOT_PATH . '/src/services/ResourceService.php';
 
-class GetPostController extends BaseController {
+class GetResourceController extends BaseController {
     protected static $instance;
 
     private function __construct($service) {
@@ -13,7 +13,7 @@ class GetPostController extends BaseController {
     public static function getInstance() {
         if (!isset(self::$instance)) {
             self::$instance = new static(
-                PostService::getInstance()
+                ResourceService::getInstance()
             );
         }
 
@@ -27,10 +27,10 @@ class GetPostController extends BaseController {
             throw new BadRequestException('Post ID not set!');
         }
 
-        $post = $this->service->getById($post_id);
+        $resources = $this->service->getResourcesByPostId($post_id);
 
-        $response = new BaseResponse(true, $post, 'User data retrieved successfully', 200);
-        
+        $response = new BaseResponse(true, $resources, 'Resource data retrieved successfully', 200);
+
         return $response->toJSON();
     }
 }
