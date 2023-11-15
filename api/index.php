@@ -23,6 +23,7 @@ require_once PROJECT_ROOT_PATH . '/src/controllers/users/RetrieveUserController.
 require_once PROJECT_ROOT_PATH . '/src/controllers/users/UpdateUserController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/users/DeleteUserController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/users/DetailUserController.php';
+require_once PROJECT_ROOT_PATH . '/src/controllers/users/GetUserDetailController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/users/GetUserController.php';
 
 require_once PROJECT_ROOT_PATH . '/src/controllers/user-reports/AddUserReportController.php';
@@ -54,6 +55,7 @@ $routeHandler->addHandler('/api/post/*', GetPostController::getInstance(), []);
 
 $routeHandler->addHandler('/api/user/read', RetrieveUserController::getInstance(), [CheckAdmin::getInstance()]);
 $routeHandler->addHandler('/api/user/read/*', DetailUserController::getInstance(), []);
+$routeHandler->addHandler('/api/user/readOne/*', DetailUserController::getInstance(), []);
 $routeHandler->addHandler('/api/user/update/*', UpdateUserController::getInstance(), []);
 $routeHandler->addHandler('/api/user/delete/*', DeleteUserController::getInstance(), []);
 $routeHandler->addHandler('/api/user/*', GetUserController::getInstance(), []);
