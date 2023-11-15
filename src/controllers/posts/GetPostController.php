@@ -21,7 +21,7 @@ class GetPostController extends BaseController {
     }
 
     public function get($urlParams) {
-        $post_id = $urlParams[0];
+        $post_id = $_GET['post_id'];
 
         if (!isset($post_id)) {
             throw new BadRequestException('Post ID not set!');

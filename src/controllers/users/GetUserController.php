@@ -21,7 +21,7 @@ class GetUserController extends BaseController {
     }
 
     public function get($urlParams) {
-        $user_id = $urlParams[0];
+        $user_id = $_GET['user_id'];
 
         if (!isset($user_id)) {
             throw new BadRequestException('User ID not set!');
