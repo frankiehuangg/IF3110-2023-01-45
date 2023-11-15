@@ -4,6 +4,7 @@ services:
   monolithic-web:
     container_name: monolithic-web
     image: monolithic-web:latest
+    build: .
     hostname: monolithic-web
     env_file: 
       - .env
@@ -20,13 +21,13 @@ services:
 
   monolithic-db:
     container_name: monolithic-db
-    image: postgres:latest
+    image: postgres:16
     hostname: monolithic-db
     ports:
       - 5432:5432
     restart: always
     environment:
-      POSTGRES_USER: ${MONOLITHIC_POSTGRES_USER}
+      POSTGRES_USER: ${MONOLITHIC_POSTGRES_USER}i
       POSTGRES_PASSWORD: ${MONOLITHIC_POSTGRES_PASSWORD}
       POSTGRES_DB: ${MONOLITHIC_POSTGRES_DB}
       POSTGRES_DATA: ${MONOLITHIC_POSTGRES_DATA}
@@ -41,7 +42,7 @@ services:
 
   monolithic-adminer:
     container_name: monolithic-adminer
-    image: adminer:latest
+    image: adminer:4.8.1
     hostname: monolithic-adminer
     depends_on:
       - monolithic-db
