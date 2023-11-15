@@ -25,6 +25,8 @@ require_once PROJECT_ROOT_PATH . '/src/controllers/users/DeleteUserController.ph
 require_once PROJECT_ROOT_PATH . '/src/controllers/users/DetailUserController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/users/GetUserController.php';
 
+require_once PROJECT_ROOT_PATH . '/src/controllers/resources/GetResourceController.php';
+
 require_once PROJECT_ROOT_PATH . '/src/controllers/user-reports/AddUserReportController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/user-reports/DeleteUserReportController.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/user-reports/GetUserReportController.php';
@@ -50,13 +52,15 @@ $routeHandler->addHandler('/api/post/search', SearchPostController::getInstance(
 $routeHandler->addHandler('/api/post/read/*', DetailPostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/update/*', UpdatePostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/delete/*', DeletePostController::getInstance(), []);
-$routeHandler->addHandler('/api/post/*', GetPostController::getInstance(), []);
+$routeHandler->addHandler('/api/post', GetPostController::getInstance(), []);
 
 $routeHandler->addHandler('/api/user/read', RetrieveUserController::getInstance(), [CheckAdmin::getInstance()]);
 $routeHandler->addHandler('/api/user/read/*', DetailUserController::getInstance(), []);
 $routeHandler->addHandler('/api/user/update/*', UpdateUserController::getInstance(), []);
 $routeHandler->addHandler('/api/user/delete/*', DeleteUserController::getInstance(), []);
-$routeHandler->addHandler('/api/user/*', GetUserController::getInstance(), []);
+$routeHandler->addHandler('/api/user', GetUserController::getInstance(), []);
+
+$routeHandler->addHandler('/api/resource', GetResourceController::getInstance(), []);
 
 $routeHandler->addHandler('/api/user_report/create', AddUserReportController::getInstance(), [CheckLogin::getInstance()]);
 $routeHandler->addHandler('/api/user_report/read', GetUserReportController::getInstance(), [CheckAdmin::getInstance()]);
