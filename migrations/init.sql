@@ -28,8 +28,8 @@ CREATE TABLE user_reports (
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
     reporter INT REFERENCES users(user_id) ON DELETE CASCADE,
     description TEXT NOT NULL,
-    status TEXT NOT NULL DEFAULT 'waiting', 
-    CHECK(status = 'waiting' OR status = 'rejected' OR status = 'accepted')
+    status TEXT NOT NULL DEFAULT 'Waiting', 
+    CHECK(status = 'Waiting' OR status = 'Rejected' OR status = 'Accepted')
 );
 
 
