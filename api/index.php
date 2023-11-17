@@ -46,7 +46,7 @@ $routeHandler = new APIRouter();
 $routeHandler->addHandler('/api', CheckHealthController::getInstance(), []);
 
 // $routeHandler->addHandler('/api/post', PostController::getInstance(), []);
-$routeHandler->addHandler('/api/post/create', CreatePostController::getInstance(), [CheckLogin::getInstance()]);
+$routeHandler->addHandler('/api/post/create', CreatePostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/read', RetrievePostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/search', SearchPostController::getInstance(), []);
 $routeHandler->addHandler('/api/post/read/*', DetailPostController::getInstance(), []);
@@ -63,8 +63,8 @@ $routeHandler->addHandler('/api/user', GetUserController::getInstance(), []);
 $routeHandler->addHandler('/api/resource', GetResourceController::getInstance(), []);
 
 $routeHandler->addHandler('/api/user_report/create', AddUserReportController::getInstance(), [CheckLogin::getInstance()]);
-$routeHandler->addHandler('/api/user_report/read', GetUserReportController::getInstance(), [CheckAdmin::getInstance()]);
-$routeHandler->addHandler('/api/user_report/update', UpdateStatusUserReportController::getInstance(), [CheckAdmin::getInstance()]);
+$routeHandler->addHandler('/api/user_report/read', GetUserReportController::getInstance(), []);
+$routeHandler->addHandler('/api/user_report/update', UpdateStatusUserReportController::getInstance(), []);
 $routeHandler->addHandler('/api/user_report/delete', DeleteUserReportController::getInstance(), [CheckAdmin::getInstance()]);
 
 $routeHandler->addHandler('/api/auth/login', LoginController::getInstance(), []);
