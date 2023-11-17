@@ -25,7 +25,7 @@ class UpdateUserController extends BaseController {
         parse_str(file_get_contents('php://input'), $_PATCH);
 
         $username = $_PATCH['username'] ?? null;
-        $password = password_hash($_PATCH['password'], PASSWORD_DEFAULT) ?? null;
+        $password = isset($_PATCH['password']) ? password_hash($_PATCH['password'], PASSWORD_DEFAULT) : null;
         $email = $_PATCH['email'] ?? null;
         $description = $_PATCH['description'] ?? null;
         $display_name = $_PATCH['display_name'] ?? null;

@@ -25,9 +25,9 @@ class UpdatePostController extends BaseController {
         parse_str(file_get_contents('php://input'), $_PATCH);
 
         $post_content = $_PATCH['post_content'] ?? null;
-        $likes = $_PATCH['likes'] ?? null;
-        $replies = $_PATCH['replies'] ?? null;
-        $retweets = $_PATCH['retweets'] ?? null;
+        $likes = isset($_PATCH['likes']) ? $_PATCH['likes'] : null;
+        $replies = isset($_PATCH['replies']) ? $_PATCH['replies'] : null;
+        $retweets = isset($_PATCH['retweets']) ? $_PATCH['retweets'] : null;
 
         $post = $this->service->updatePost($post_id, $post_content, $likes, $replies, $retweets);
 

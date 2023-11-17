@@ -118,7 +118,12 @@ class PostService extends BaseService {
         $post = new PostModel();
 
         $post->set('post_content', $post_content);
-        $post->set('user_id', $_SESSION['user_id']);
+
+        if (isset($_POST['user_id'])) {
+            $post->set('user_id', $_POST['user_id']);
+        } else {
+            $post->set('user_id', $_SESSION['user_id']);
+        }
 
         $post_last_id = $this->post_repository->insert($post, array(
             'user_id'      => PDO::PARAM_INT,
@@ -237,10 +242,25 @@ class PostService extends BaseService {
 
         $params = [];
 
-        if (isset($post_content))   { $post->set('post_content', $post_content);    $params['post_content'] = PDO::PARAM_STR; }
-        if (isset($likes))          { $post->set('likes', $likes);                  $params['likes'] = PDO::PARAM_INT; }
-        if (isset($replies))        { $post->set('replies', $replies);              $params['replies'] = PDO::PARAM_INT; }
-        if (isset($retweets))       { $post->set('retweets', $retweets);            $params['retweets'] = PDO::PARAM_INT; }
+        if (isset($post_content)) { 
+            $post->set('post_content', $post_content);
+            $params['post_content'] = PDO::PARAM_STR; 
+        }
+
+        if (isset($likes)) { 
+            $post->set('likes', $likes);
+            $params['likes'] = PDO::PARAM_INT; 
+        }
+
+        if (isset($replies)) { 
+            $post->set('replies', $replies);
+            $params['replies'] = PDO::PARAM_INT; 
+        }
+
+        if (isset($retweets)) { 
+            $post->set('retweets', $retweets);
+            $params['retweets'] = PDO::PARAM_INT; 
+        }
 
         $this->post_repository->update($post, $params);
 

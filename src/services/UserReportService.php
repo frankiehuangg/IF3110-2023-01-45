@@ -61,7 +61,13 @@ class UserReportService extends BaseService {
     }
 
     public function updateStatus($report_id, $status) {
-        $report = $this->user_report_repository->getReportById($report_id);
+        $report = new UserReportModel();
+
+        $report_sql = $this->user_report_repository->getReportById($report_id);
+
+        if ($report_sql) {
+            $report->constructFromArray($report_sql);
+        }
 
         if (!isset($report)) {
             throw new BadRequestException('Report not found');
@@ -69,7 +75,7 @@ class UserReportService extends BaseService {
 
         $report->set('status', $status);
 
-        $report_model = $this->user_report_repository->update($report, array(
+        $this->user_report_repository->update($report, array(
             'status' => PDO::PARAM_STR
         ));
 

@@ -48,7 +48,10 @@ class DetailUserController extends BaseController {
             return [$response[0]->toResponse(), $response[1]->toResponse(), $resources];
         }, $responses);
 
-        
+        if (isset($_GET['json'])) {
+            $response = new BaseResponse(true, $response_posts, 'User posts retrieved successfully', 200);
+            return $response->toJSON();
+        }  
 
         $html = UserCard($response_posts[0][1]);
 

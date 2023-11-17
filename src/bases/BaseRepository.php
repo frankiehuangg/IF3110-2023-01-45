@@ -151,6 +151,7 @@ abstract class BaseRepository {
         }
 
         $stmt->execute();
+
         return $stmt->fetch();
     }
 

@@ -35,6 +35,12 @@ class RetrievePostController extends BaseController {
             return [$response[0]->toResponse(), $response[1]->toResponse(), $resources];
         }, $responses);
 
+        if (isset($_GET['json'])) {
+            $response = new BaseResponse(true, $response_posts, 'Posts retrieved successfully', 200);
+            
+            return $response->toJSON();
+        }
+
         $html = "";
         foreach ($response_posts as $response_post) {
             $html = $html . PostCard($response_post);
