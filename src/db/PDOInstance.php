@@ -5,11 +5,11 @@ class PDOInstance {
     private $pdo;
 
     private function __construct() {
-        $DB_HOST     = $_ENV['POSTGRES_HOST'] ? $_ENV['POSTGRES_HOST'] : 'tubes-db';
-        $DB_PORT     = $_ENV['POSTGRES_PORT'];
-        $DB_USERNAME = $_ENV['POSTGRES_USER'];
-        $DB_PASSWORD = $_ENV['POSTGRES_PASSWORD'];
-        $DB_NAME     = $_ENV['POSTGRES_DB'];
+        $DB_HOST     = $_ENV['MONOLITHIC_POSTGRES_HOST'] ? $_ENV['MONOLITHIC_POSTGRES_HOST'] : 'tubes-db';
+        $DB_PORT     = $_ENV['MONOLITHIC_POSTGRES_PORT'];
+        $DB_USERNAME = $_ENV['MONOLITHIC_POSTGRES_USER'];
+        $DB_PASSWORD = $_ENV['MONOLITHIC_POSTGRES_PASSWORD'];
+        $DB_NAME     = $_ENV['MONOLITHIC_POSTGRES_DB'];
 
         try {
             $URI = "pgsql:host=$DB_HOST;port=$DB_PORT;dbname=$DB_NAME";

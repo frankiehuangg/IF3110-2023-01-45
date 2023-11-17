@@ -31,7 +31,7 @@
                     </div>
                     <button type="submit" class="submitButton">Register</button>
                     <div class="inputGroup">
-                        <p class="subtext">Already have an account? <a href="http://localhost:8008/login">login</a></p>
+                        <p class="subtext">Already have an account? <a href="/login">login</a></p>
                     </div>
                 </form>
             </div>

@@ -25,7 +25,6 @@ class UpdateStatusUserReportController extends BaseController {
         parse_str(file_get_contents('php://input'), $_PATCH);
         $report_id = $_PATCH['report_id'];
         $status = $_PATCH['status'];
-
         $put = $this->service->updateStatus($report_id, $status);
 
         $response = new BaseResponse(true, $put, "Successfully updated status", 200);

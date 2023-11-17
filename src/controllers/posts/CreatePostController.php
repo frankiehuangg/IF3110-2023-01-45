@@ -22,9 +22,10 @@ class CreatePostController extends BaseController {
 
     public function post($url_params) {
         $post_content = $_POST['post_content'];
-        $resources = $_POST['resources'] ? explode(',', $_POST['resources']) : null;
+        $resources = isset($_POST['resources']) ? explode(',', $_POST['resources']) : null;
+        $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : $_SESSION['user_id'];
 
-        $post = $this->service->createPost($post_content, $resources);
+        $post = $this->service->createPost($post_content, $resources, );
 
         $response = new BaseResponse(true, $post, 'Post created successfully', 200);
 

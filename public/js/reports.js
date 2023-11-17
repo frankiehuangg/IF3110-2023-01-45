@@ -13,13 +13,16 @@ window.onload = async function getReports(event) {
     };
 
     const res = await lib.get('/api/user_report/read', payload);
+    console.log(res);
     const json = JSON.parse(res);
 
     if (json.success) {
         const results = json.data;
         container.innerHTML = results;
     } else {
-        console.log('waterpark');
+        if (json.status_code === 400) {
+            window.location.assign('/');
+        }
     }
 }
 
@@ -32,7 +35,6 @@ const updateStatus = async (report_id, type) => {
     }
 
     const res = await lib.patch('/api/user_report/update', data);
-    console.log(res);
     const json = JSON.parse(res);
 
     if (json.success) {
@@ -51,5 +53,5 @@ const redirect = (type) => {
     } else if (type == 1) {
         page = parseInt(page) + 1;
     }
-    window.location.assign('http://localhost:8008/report-list/' + page);
+    window.location.assign('/report-list/' + page);
 }

@@ -1,40 +1,38 @@
-version: '3.3'
+version: '3.9'
+
 services:
-  tubes-web:
-    container_name: tubes-web
-    image: tubes-1:latest
-    hostname: tubes-web
+  monolithic-web:
+    container_name: monolithic-web
+    image: monolithic-web:latest
+    build: .
+    hostname: monolithic-web
     env_file: 
       - .env
-    networks:
-      - tubes
     ports:
       - 8008:80     # frontend
     depends_on:
-      tubes-db:
+      monolithic-db:
         condition: service_healthy
-      tubes-adminer:
+      monolithic-adminer:
         condition: service_started
     volumes:
       - .:/var/www/html/
       - ./php.ini:/usr/local/etc/php/php.ini
 
-  tubes-db:
-    container_name: tubes-db
-    image: postgres:latest
-    hostname: tubes-db
-    networks:
-      - tubes
+  monolithic-db:
+    container_name: monolithic-db
+    image: postgres:16
+    hostname: monolithic-db
     ports:
       - 5432:5432
     restart: always
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_DATA: ${POSTGRES_DATA}
+      POSTGRES_USER: ${MONOLITHIC_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${MONOLITHIC_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${MONOLITHIC_POSTGRES_DB}
+      POSTGRES_DATA: ${MONOLITHIC_POSTGRES_DATA}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U ${MONOLITHIC_POSTGRES_USER} -d ${MONOLITHIC_POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -42,16 +40,11 @@ services:
       - ./migrations/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./db:/var/lib/postgresql/data/
 
-  tubes-adminer:
-    container_name: tubes-adminer
-    image: adminer:latest
-    hostname: tubes-adminer
-    networks:
-      - tubes
+  monolithic-adminer:
+    container_name: monolithic-adminer
+    image: adminer:4.8.1
+    hostname: monolithic-adminer
     depends_on:
-      - tubes-db
+      - monolithic-db
     ports:
       - 8080:8080
-
-networks:
-  tubes:

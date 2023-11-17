@@ -1,11 +1,11 @@
 <?php
 
 require_once PROJECT_ROOT_PATH . '/src/bases/BaseController.php';
-require_once PROJECT_ROOT_PATH . '/src/services/UserService.php';
 require_once PROJECT_ROOT_PATH . '/src/services/PostService.php';
 
-class DeleteUserController extends BaseController {
+class GetPostController extends BaseController {
     protected static $instance;
+
     private function __construct($service) {
         parent::__construct($service);
     }
@@ -13,22 +13,26 @@ class DeleteUserController extends BaseController {
     public static function getInstance() {
         if (!isset(self::$instance)) {
             self::$instance = new static(
-                UserService::getInstance()
+                PostService::getInstance()
             );
         }
 
         return self::$instance;
     }
 
-    public function delete($urlParams) {
-        $user_id = $urlParams[0];
+    public function get($urlParams) {
+        $post_id = $_GET['post_id'];
 
-        $user = $this->service->deleteUser($user_id);
+        if (!isset($post_id)) {
+            throw new BadRequestException('Post ID not set!');
+        }
 
-        $response = new BaseResponse(true, $user, 'User deleted successfully', 200);
+        $post = $this->service->getById($post_id);
 
+        $response = new BaseResponse(true, $post, 'User data retrieved successfully', 200);
+        
         return $response->toJSON();
     }
-};
+}
 
 ?>

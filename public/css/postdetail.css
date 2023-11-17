@@ -1,7 +1,7 @@
 .post-card {
     display: flex;
     align-items: flex-start;
-    width: 650px;
+    width: 100%;
     min-width: 450px;
     text-decoration: none;
     background-color: black;

@@ -27,6 +27,11 @@ class GetUserReportController extends BaseController {
 
         $res = $this->service->getPagination($page, $amount);
 
+        if (isset($_GET['json'])) {
+            $response = new BaseResponse(true, $res, "Successfully retrieved reports in json", 200);
+            return $response->toJSON();
+        }
+
         $html = "";
         foreach ($res as $model) {
             $html = $html . userReports($model);

@@ -23,6 +23,15 @@ class ForgetPasswordController extends BaseController {
     public function patch($url_params) {
         $_PATCH = [];
         parse_str(file_get_contents('php://input'), $_PATCH);
+
+        if (!isset($_PATCH["email"])){ 
+            throw new BadRequestException('Email not set!');   
+        }
+
+        if (!isset($_PATCH['password']) || !isset($_PATCH['confirm_password'])) {
+            throw new BadRequestException('Password not set!');
+        }
+
         $email = $_PATCH['email'];
         $password = $_PATCH['password'];
         $confirm_password = $_PATCH['confirm_password'];

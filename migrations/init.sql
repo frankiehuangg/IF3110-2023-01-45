@@ -25,17 +25,17 @@ CREATE TABLE users (
 
 CREATE TABLE user_reports (
     report_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(user_id),
-    reporter INT REFERENCES users(user_id),
+    user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+    reporter INT REFERENCES users(user_id) ON DELETE CASCADE,
     description TEXT NOT NULL,
-    status TEXT NOT NULL DEFAULT 'waiting', 
-    CHECK(status = 'waiting' OR status = 'rejected' OR status = 'accepted')
+    status TEXT NOT NULL DEFAULT 'Waiting', 
+    CHECK(status = 'Waiting' OR status = 'Rejected' OR status = 'Accepted')
 );
 
 
 CREATE TABLE posts (
     post_id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(user_id),
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
     post_content VARCHAR(280) NOT NULL,
     post_timestamp TIMESTAMP DEFAULT NOW(),
     likes INTEGER DEFAULT 0,
@@ -44,7 +44,7 @@ CREATE TABLE posts (
 );
 
 CREATE TABLE resources (
-    post_id INTEGER REFERENCES posts(post_id),
+    post_id INTEGER REFERENCES posts(post_id) ON DELETE CASCADE,
     resource_path VARCHAR(256) NOT NULL,
     PRIMARY KEY (post_id, resource_path)
 );

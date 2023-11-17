@@ -34,10 +34,13 @@ async function submitForm(event) {
     const json = JSON.parse(res);
 
     if (json.success) {
-        console.log('berhasil');
+        alert('Post created successfully');
         window.location.reload();
     } else {
-        console.log(':(');
+        if (json.status_code === 400) {
+            alert('Please login first!');
+            window.location.assign('/login');
+        }
         button.disabled = false;
     }
 
